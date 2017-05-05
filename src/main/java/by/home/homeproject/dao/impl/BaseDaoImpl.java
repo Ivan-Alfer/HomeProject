@@ -29,9 +29,10 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		try {
 			session.beginTransaction();
 			items = session.createQuery(getAllSelectQuery()).list();
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException();
+		}finally{
+			session.getTransaction().commit();
 		}
 		return items;
 	}
@@ -40,9 +41,10 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		try {
 			session.beginTransaction();
 			session.save(item);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException();
+		}finally{
+			session.getTransaction().commit();
 		}
 	}
 
@@ -53,9 +55,10 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 			if (item != null) {
 				session.delete(item);
 			}
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException();
+		}finally{
+			session.getTransaction().commit();
 		}
 	}
 
@@ -63,9 +66,10 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 		try {
 			session.beginTransaction();
 			session.saveOrUpdate(item);
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException();
+		}finally{
+			session.getTransaction().commit();
 		}
 	}
 

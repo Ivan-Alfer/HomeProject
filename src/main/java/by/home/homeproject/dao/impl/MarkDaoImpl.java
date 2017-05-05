@@ -30,9 +30,10 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 			session = HibernateUtil.getSessionFactory().openSession();
 			session.beginTransaction();
 			marks = session.createQuery("from Mark", Mark.class).list();
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException();
+		}finally{
+			session.getTransaction().commit();
 		}
 		return marks;
 	}
@@ -45,9 +46,10 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 			session.beginTransaction();
 			marks = session.createQuery("from Mark where studentId = :id", Mark.class).setParameter("id", studentId)
 					.list();
-			session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException();
+		}finally{
+			session.getTransaction().commit();
 		}
 		return marks;
 	}
@@ -59,9 +61,10 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 		session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 		marks = session.createQuery("from Mark where subjectId = :id", Mark.class).setParameter("id", subjectId).list();
-		session.getTransaction().commit();
 		} catch (Exception e) {
 			throw new DaoException();
+		}finally{
+			session.getTransaction().commit();
 		}
 		return marks;
 	}
