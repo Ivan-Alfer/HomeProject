@@ -10,6 +10,7 @@ import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Mark;
 import by.home.homeproject.service.MarkService;
 import by.home.homeproject.service.ServiceFactory;
+import by.home.homeproject.service.exception.ServiceException;
 
 public class AddMark extends BaseCommand{
 
@@ -31,7 +32,11 @@ public class AddMark extends BaseCommand{
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markService = serviceFactory.getMarkService();
 
-			markService.addMark(mark);
+			try {
+				markService.addMark(mark);
+			} catch (ServiceException e1) {
+				throw new CommandException();
+			}
 
 		try {
 			response.sendRedirect("/HomeProject/all_student_on_the_subject?id="+subId);

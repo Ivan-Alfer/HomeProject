@@ -13,6 +13,7 @@ import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Subject;
 import by.home.homeproject.service.ServiceFactory;
 import by.home.homeproject.service.SubjectService;
+import by.home.homeproject.service.exception.ServiceException;
 
 public class ShowAllSubjects extends BaseCommand {
 
@@ -23,7 +24,11 @@ public class ShowAllSubjects extends BaseCommand {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();
 
-		subjects = subjectService.getSubjects();
+		try {
+			subjects = subjectService.getSubjects();
+		} catch (ServiceException e1) {
+			throw new CommandException();
+		}
 
 		request.setAttribute("subjects", subjects);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/all_subjects.jsp");

@@ -1,8 +1,8 @@
 package by.home.homeproject.dao;
 
-import by.home.homeproject.dbdao.MarkDaoImpl;
-import by.home.homeproject.dbdao.StudentDaoImpl;
-import by.home.homeproject.dbdao.SubjectDaoImpl;
+import by.home.homeproject.dao.impl.MarkDaoImpl;
+import by.home.homeproject.dao.impl.StudentDaoImpl;
+import by.home.homeproject.dao.impl.SubjectDaoImpl;
 import by.home.homeproject.entity.Student;
 import by.home.homeproject.entity.Subject;
 

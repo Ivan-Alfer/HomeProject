@@ -13,6 +13,7 @@ import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Student;
 import by.home.homeproject.service.ServiceFactory;
 import by.home.homeproject.service.StudentService;
+import by.home.homeproject.service.exception.ServiceException;
 
 public class GoToAddMark extends BaseCommand {
 
@@ -22,7 +23,12 @@ public class GoToAddMark extends BaseCommand {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();
 
-		List<Student> students = studentService.getStudents();
+		List<Student> students;
+		try {
+			students = studentService.getStudents();
+		} catch (ServiceException e1) {
+			throw new CommandException();
+		}
 
 		request.setAttribute("students", students);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/add_mark.jsp");

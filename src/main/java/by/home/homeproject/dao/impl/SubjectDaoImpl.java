@@ -1,4 +1,4 @@
-package by.home.homeproject.dbdao;
+package by.home.homeproject.dao.impl;
 
 import org.hibernate.Session;
 

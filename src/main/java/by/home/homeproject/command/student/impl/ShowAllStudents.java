@@ -13,6 +13,7 @@ import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Student;
 import by.home.homeproject.service.ServiceFactory;
 import by.home.homeproject.service.StudentService;
+import by.home.homeproject.service.exception.ServiceException;
 
 public class ShowAllStudents extends BaseCommand {
 
@@ -23,7 +24,11 @@ public class ShowAllStudents extends BaseCommand {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();
 
-		students = studentService.getStudents();
+		try {
+			students = studentService.getStudents();
+		} catch (ServiceException e1) {
+			throw new CommandException();
+		}
 
 		request.setAttribute("students", students);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/all_students.jsp");

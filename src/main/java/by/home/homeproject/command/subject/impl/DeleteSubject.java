@@ -9,6 +9,7 @@ import by.home.homeproject.command.exception.CommandException;
 import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.service.ServiceFactory;
 import by.home.homeproject.service.SubjectService;
+import by.home.homeproject.service.exception.ServiceException;
 
 public class DeleteSubject extends BaseCommand {
 
@@ -22,7 +23,11 @@ public class DeleteSubject extends BaseCommand {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();
 
-		subjectService.deleteSubject(id);
+		try {
+			subjectService.deleteSubject(id);
+		} catch (ServiceException e1) {
+			throw new CommandException();
+		}
 
 		try {
 			response.sendRedirect("/HomeProject/all_subjects");

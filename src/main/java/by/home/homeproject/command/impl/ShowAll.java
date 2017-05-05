@@ -12,6 +12,7 @@ import by.home.homeproject.command.exception.CommandException;
 import by.home.homeproject.entity.Mark;
 import by.home.homeproject.service.MarkService;
 import by.home.homeproject.service.ServiceFactory;
+import by.home.homeproject.service.exception.ServiceException;
 
 public class ShowAll extends BaseCommand {
 
@@ -22,7 +23,11 @@ public class ShowAll extends BaseCommand {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markDao = serviceFactory.getMarkService();
 
-		marks = markDao.getAllEntities();
+		try {
+			marks = markDao.getAllEntities();
+		} catch (ServiceException e1) {
+			throw new CommandException();
+		}
 
 		request.setAttribute("marks", marks);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/all.jsp");

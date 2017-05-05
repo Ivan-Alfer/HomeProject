@@ -10,6 +10,7 @@ import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Subject;
 import by.home.homeproject.service.ServiceFactory;
 import by.home.homeproject.service.SubjectService;
+import by.home.homeproject.service.exception.ServiceException;
 
 public class UpdateSubject extends BaseCommand {
 
@@ -26,7 +27,11 @@ public class UpdateSubject extends BaseCommand {
 		ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();
 
-		subjectService.updateSubject(subject);
+		try {
+			subjectService.updateSubject(subject);
+		} catch (ServiceException e1) {
+			throw new CommandException();
+		}
 
 		try {
 			response.sendRedirect("/all_subjects");

@@ -13,7 +13,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Assert;
 import org.testng.annotations.Test;
 
-import by.home.homeproject.dbdao.StudentDaoImpl;
+import by.home.homeproject.dao.impl.StudentDaoImpl;
 import by.home.homeproject.entity.Student;
 import by.home.homeproject.hibernateutil.HibernateUtil;
 

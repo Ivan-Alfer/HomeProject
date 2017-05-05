@@ -1,4 +1,4 @@
-package by.home.homeproject.entity;
+package by.home.homeproject.dao.impl;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
