@@ -39,13 +39,14 @@ public class AllStudentOnTheSubject extends BaseCommand {
 		Integer subjectId = Integer.valueOf(sId);
 
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markService = (MarkService) context.getBean("markService");
+		AllStudentOnTheSubject allStudentOnTheSubject = (AllStudentOnTheSubject) context.getBean("allStudentOnTheSubject");
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markService = serviceFactory.getMarkService();*/
 
 		List<Mark> marks;
 		try {
-			marks = markService.getAllStudentOnTheSubject(subjectId);
+			marks = allStudentOnTheSubject.markService.getAllStudentOnTheSubject(subjectId);
+			//marks = markService.getAllStudentOnTheSubject(subjectId);
 		} catch (ServiceException e1) {
 			throw new CommandException();
 		}

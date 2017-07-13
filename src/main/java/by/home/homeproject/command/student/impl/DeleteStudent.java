@@ -35,12 +35,13 @@ public class DeleteStudent extends BaseCommand {
 		Integer id = Integer.valueOf(sId);
 
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentService = (StudentService) context.getBean("studentService");
+		DeleteStudent deleteStudent = (DeleteStudent) context.getBean("deleteStudent");
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();*/
 
 		try {
-			studentService.deleteStudent(id);
+			deleteStudent.studentService.deleteStudent(id);
+			//studentService.deleteStudent(id);
 		} catch (ServiceException e) {
 			throw new CommandException();
 		}

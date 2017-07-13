@@ -33,12 +33,13 @@ public class DeleteSubject extends BaseCommand {
 		Integer id = Integer.valueOf(sId);
 
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectService = (SubjectService) context.getBean("subjectService");
+		DeleteSubject deleteSubject = (DeleteSubject) context.getBean("deleteSubject");
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
-			subjectService.deleteSubject(id);
+			deleteSubject.subjectService.deleteSubject(id);
+			//subjectService.deleteSubject(id);
 		} catch (ServiceException e1) {
 			throw new CommandException();
 		}

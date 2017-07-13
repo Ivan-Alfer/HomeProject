@@ -21,6 +21,15 @@ public class AddMark extends BaseCommand{
 	private static final String MARK = "mark";
 	
 	private MarkService markService;
+	private Mark mark;
+
+	public Mark getMark() {
+		return mark;
+	}
+
+	public void setMark(Mark mark) {
+		this.mark = mark;
+	}
 
 	public MarkService getMarkService() {
 		return markService;
@@ -32,22 +41,32 @@ public class AddMark extends BaseCommand{
 	
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		Mark mark = new Mark();
+		
+		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
+		AddMark addMark = (AddMark) context.getBean("addMark");
+		
+		
+		
+		//Mark mark = new Mark();
 		String studId=request.getParameter(STUDENT_ID);
 		String subId = request.getParameter(SUBJECT_ID);
 		String sMark = request.getParameter(MARK);
 		
-		mark.setSubjectId(Integer.valueOf(subId));
-		mark.setStudentId(Integer.valueOf(studId));
-		mark.setMark(Integer.valueOf(sMark));
 		
-		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markService = (MarkService) context.getBean("markService");
+		addMark.mark.setSubjectId(Integer.valueOf(subId));
+		addMark.mark.setStudentId(Integer.valueOf(studId));
+		addMark.mark.setMark(Integer.valueOf(sMark));
+
+		/*mark.setSubjectId(Integer.valueOf(subId));
+		mark.setStudentId(Integer.valueOf(studId));
+		mark.setMark(Integer.valueOf(sMark));*/
+		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markService = serviceFactory.getMarkService();*/
 
 			try {
-				markService.addMark(mark);
+				addMark.markService.addMark(addMark.mark);
+				//markService.addMark(mark);
 			} catch (ServiceException e1) {
 				throw new CommandException();
 			}

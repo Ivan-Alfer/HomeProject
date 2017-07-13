@@ -35,12 +35,13 @@ public class ShowAllSubjects extends BaseCommand {
 		List<Subject> subjects;
 
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectService = (SubjectService) context.getBean("subjectService");
+		ShowAllSubjects showAllSubjects = (ShowAllSubjects) context.getBean("showAllSubjects");
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
-			subjects = subjectService.getSubjects();
+			subjects = showAllSubjects.subjectService.getSubjects();
+			//subjects = subjectService.getSubjects();
 		} catch (ServiceException e1) {
 			throw new CommandException();
 		}

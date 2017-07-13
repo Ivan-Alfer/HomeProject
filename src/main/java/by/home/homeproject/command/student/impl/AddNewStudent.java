@@ -21,6 +21,17 @@ public class AddNewStudent extends BaseCommand{
 	private static final String LAST_NAME = "last name";
 	
 	private StudentService studentService;
+	private Student student;
+
+
+	public Student getStudent() {
+		return student;
+	}
+
+
+	public void setStudent(Student student) {
+		this.student = student;
+	}
 
 
 	public StudentService getStudentService() {
@@ -35,20 +46,25 @@ public class AddNewStudent extends BaseCommand{
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		
+		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
+		AddNewStudent addNewStudent = (AddNewStudent) context.getBean("addNewStudent");
 		
 		String firstName = request.getParameter(FIRST_NAME);
 		String lastName = request.getParameter(LAST_NAME);
-		Student student = new Student();
-		student.setFirstName(firstName);
-		student.setLastName(lastName);
 		
-		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentService = (StudentService) context.getBean("studentService");
+		addNewStudent.student.setFirstName(firstName);
+		addNewStudent.student.setLastName(lastName);
+		
+		/*Student student = new Student();
+		student.setFirstName(firstName);
+		student.setLastName(lastName);*/
+		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();*/
 		
 		try {
-			studentService.addStudent(student);
+			addNewStudent.studentService.addStudent(addNewStudent.student);
+			//studentService.addStudent(student);
 		} catch (ServiceException e) {
 			throw new CommandException();
 		}

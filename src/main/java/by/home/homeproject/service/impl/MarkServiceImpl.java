@@ -30,10 +30,11 @@ public class MarkServiceImpl implements MarkService {
 	@Override
 	public List<Mark> getMarks() throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markDao = (MarkDao) context.getBean("markDao");
+		MarkServiceImpl markService = (MarkServiceImpl) context.getBean("markService");
 		List<Mark> marks;
 		try {
-			marks = markDao.getEntities();
+			marks = markService.markDao.getAllEntities();
+			//marks = markDao.getEntities();
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -43,9 +44,10 @@ public class MarkServiceImpl implements MarkService {
 	@Override
 	public void addMark(Mark mark) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markDao = (MarkDao) context.getBean("markDao");
+		MarkServiceImpl markService = (MarkServiceImpl) context.getBean("markService");
 		try {
-			markDao.addEntity(mark);
+			markService.markDao.addEntity(mark);
+			//markDao.addEntity(mark);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -54,9 +56,10 @@ public class MarkServiceImpl implements MarkService {
 	@Override
 	public void deleteMark(int id) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markDao = (MarkDao) context.getBean("markDao");
+		MarkServiceImpl markService = (MarkServiceImpl) context.getBean("markService");
 		try {
-			markDao.deleteEntity(id);
+			markService.markDao.deleteEntity(id);
+			//markDao.deleteEntity(id);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -66,9 +69,10 @@ public class MarkServiceImpl implements MarkService {
 	@Override
 	public void updateMark(Mark mark) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markDao = (MarkDao) context.getBean("markDao");
+		MarkServiceImpl markService = (MarkServiceImpl) context.getBean("markService");
 		try {
-			markDao.updateEntity(mark);
+			markService.markDao.updateEntity(mark);
+			//markDao.updateEntity(mark);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -78,10 +82,11 @@ public class MarkServiceImpl implements MarkService {
 	@Override
 	public List<Mark> getAllEntities() throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markDao = (MarkDao) context.getBean("markDao");
+		MarkServiceImpl markService = (MarkServiceImpl) context.getBean("markService");
 		List<Mark> marks;
 		try {
-			marks = markDao.getAllEntities();
+			marks = markService.markDao.getAllEntities();
+			//marks = markDao.getAllEntities();
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -91,10 +96,11 @@ public class MarkServiceImpl implements MarkService {
 	@Override
 	public List<Mark> getAllAboutStudent(Integer studentId) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markDao = (MarkDao) context.getBean("markDao");
+		MarkServiceImpl markService = (MarkServiceImpl) context.getBean("markService");
 		List<Mark> marks;
 		try {
-			marks = markDao.getAllAboutStudent(studentId);
+			marks = markService.markDao.getAllAboutStudent(studentId);
+			//marks = markDao.getAllAboutStudent(studentId);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -104,10 +110,11 @@ public class MarkServiceImpl implements MarkService {
 	@Override
 	public List<Mark> getAllStudentOnTheSubject(Integer subjectId) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		markDao = (MarkDao) context.getBean("markDao");
+		MarkServiceImpl markService = (MarkServiceImpl) context.getBean("markService");
 		List<Mark> marks;
 		try {
-			marks = markDao.getAllStudentOnTheSubject(subjectId);
+			marks = markService.markDao.getAllStudentOnTheSubject(subjectId);
+			//marks = markDao.getAllStudentOnTheSubject(subjectId);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}

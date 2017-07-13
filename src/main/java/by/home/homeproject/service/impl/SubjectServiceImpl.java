@@ -30,10 +30,11 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public List<Subject> getSubjects() throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectDao = (BaseDao<Subject>) context.getBean("subjectDao");
+		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
 		List<Subject> subjects;
 		try {
-			subjects = subjectDao.getEntities();
+			subjects = subjectService.subjectDao.getEntities();
+			//subjects = subjectDao.getEntities();
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -43,9 +44,10 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public void addSubject(Subject subject) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectDao = (BaseDao<Subject>) context.getBean("subjectDao");
+		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
 		try {
-			subjectDao.addEntity(subject);
+			subjectService.subjectDao.addEntity(subject);
+			//subjectDao.addEntity(subject);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -55,9 +57,10 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public void deleteSubject(int id) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectDao = (BaseDao<Subject>) context.getBean("subjectDao");
+		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
 		try {
-			subjectDao.deleteEntity(id);
+			subjectService.subjectDao.deleteEntity(id);
+			//subjectDao.deleteEntity(id);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -67,9 +70,10 @@ public class SubjectServiceImpl implements SubjectService {
 	@Override
 	public void updateSubject(Subject subject) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectDao = (BaseDao<Subject>) context.getBean("studentDao");
+		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
 		try {
-			subjectDao.updateEntity(subject);
+			subjectService.subjectDao.updateEntity(subject);
+			//subjectDao.updateEntity(subject);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}

@@ -21,6 +21,15 @@ public class UpdateSubject extends BaseCommand {
 	private static final String SUBJECT = "subject";
 	
 	private SubjectService subjectService;
+	private Subject subject;
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
 
 	public SubjectService getSubjectService() {
 		return subjectService;
@@ -32,18 +41,23 @@ public class UpdateSubject extends BaseCommand {
 
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		Subject subject = new Subject();
+		//Subject subject = new Subject();
 		String sId = request.getParameter(ID);
-		subject.setId(Integer.valueOf(sId));
-		subject.setSubjectName(request.getParameter(SUBJECT));
+		/*subject.setId(Integer.valueOf(sId));
+		subject.setSubjectName(request.getParameter(SUBJECT));*/
 		
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectService = (SubjectService) context.getBean("subjectService");
+		UpdateSubject updateSubject = (UpdateSubject) context.getBean("updateSubject");
+		
+		updateSubject.subject.setId(Integer.valueOf(sId));
+		updateSubject.subject.setSubjectName(request.getParameter(SUBJECT));
+		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
-			subjectService.updateSubject(subject);
+			updateSubject.subjectService.updateSubject(updateSubject.subject);
+			//subjectService.updateSubject(subject);
 		} catch (ServiceException e1) {
 			throw new CommandException();
 		}

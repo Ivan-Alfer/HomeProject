@@ -34,12 +34,13 @@ public class ShowAllStudents extends BaseCommand {
 
 		List<Student> students;
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentService = (StudentService) context.getBean("studentService");
+		ShowAllStudents showAllStudents = (ShowAllStudents) context.getBean("showAllStudents");
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();*/
 
 		try {
-			students = studentService.getStudents();
+			students = showAllStudents.studentService.getStudents();
+			//students = studentService.getStudents();
 		} catch (ServiceException e1) {
 			throw new CommandException();
 		}

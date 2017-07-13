@@ -24,12 +24,6 @@ public class StudentServiceImpl implements StudentService {
 	public void setStudentDao(BaseDao<Student> studentDao) {
 		this.studentDao = studentDao;
 	}
-	public StudentServiceImpl(){
-		
-		// ApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		// BeanFactory factory = (BeanFactory) context;
-	}
-	
 	
 	//StudentDao student = (StudentDao) factory.getBean("studentDao");
 	
@@ -40,12 +34,12 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public List<Student> getStudents() throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentDao = (BaseDao<Student>) context.getBean("studentDao");
+		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");
 
 		List<Student> students;
 		try {
-			
-			students = studentDao.getEntities();
+			students = studentService.studentDao.getEntities();
+			//students = studentDao.getEntities();
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -55,9 +49,10 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void addStudent(Student student) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentDao = (BaseDao<Student>) context.getBean("studentDao");
+		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");		
 		try {
-			studentDao.addEntity(student);
+			studentService.studentDao.addEntity(student);
+			//studentDao.addEntity(student);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -66,9 +61,10 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void deleteStudent(int id) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentDao = (BaseDao<Student>) context.getBean("studentDao");
+		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");
 		try {
-			studentDao.deleteEntity(id);
+			studentService.studentDao.deleteEntity(id);
+			//studentDao.deleteEntity(id);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -77,9 +73,11 @@ public class StudentServiceImpl implements StudentService {
 	@Override
 	public void updateStudent(Student student) throws ServiceException {
 		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentDao = (BaseDao<Student>) context.getBean("studentDao");
+		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");
+		
 		try {
-			studentDao.updateEntity(student);
+			studentService.studentDao.updateEntity(student);
+			//studentDao.updateEntity(student);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}

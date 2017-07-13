@@ -8,6 +8,8 @@
 	<import resource="commandSpring.xml" />
 	
 	<bean id="student" class="by.home.homeproject.entity.Student" />
+	<bean id="mark" class="by.home.homeproject.entity.Mark" />
+	<bean id="subject" class="by.home.homeproject.entity.Subject" />
 
 	<bean id="studentDao" class="by.home.homeproject.dao.impl.StudentDaoImpl" />
 	<bean id="markDao" class="by.home.homeproject.dao.impl.MarkDaoImpl" />

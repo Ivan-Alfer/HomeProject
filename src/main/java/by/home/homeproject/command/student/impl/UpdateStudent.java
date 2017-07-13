@@ -11,7 +11,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import by.home.homeproject.command.exception.CommandException;
 import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Student;
-import by.home.homeproject.service.ServiceFactory;
 import by.home.homeproject.service.StudentService;
 import by.home.homeproject.service.exception.ServiceException;
 
@@ -50,17 +49,24 @@ public class UpdateStudent extends BaseCommand {
 		
 
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		studentService = (StudentService) context.getBean("studentService");
+		UpdateStudent upd = (UpdateStudent) context.getBean("updateStudent");
+		
+		String sId = request.getParameter(ID);
+		upd.student.setFirstName(request.getParameter(FIRST_NAME));
+		upd.student.setId(Integer.valueOf(sId));
+		upd.student.setLastName(request.getParameter(LAST_NAME));
+		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();*/
 
-		String sId = request.getParameter(ID);
-		student.setId(Integer.valueOf(sId));
+		
+		/*student.setId(Integer.valueOf(sId));
 		student.setFirstName(request.getParameter(FIRST_NAME));
-		student.setLastName(request.getParameter(LAST_NAME));
+		student.setLastName(request.getParameter(LAST_NAME));*/
 		
 		try {
-			studentService.updateStudent(student);
+			upd.studentService.updateStudent(upd.student);
+			//studentService.updateStudent(student);
 		} catch (ServiceException e) {
 			throw new CommandException();
 		}

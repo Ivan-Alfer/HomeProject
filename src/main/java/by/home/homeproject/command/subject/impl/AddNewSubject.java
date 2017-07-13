@@ -21,6 +21,15 @@ public class AddNewSubject extends BaseCommand {
 	private static final String SUBJECT_NAME = "subject";
 	
 	private SubjectService subjectService;
+	private Subject subject;
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
 
 	public SubjectService getSubjectService() {
 		return subjectService;
@@ -33,15 +42,18 @@ public class AddNewSubject extends BaseCommand {
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String subjectName = request.getParameter(SUBJECT_NAME);
-		Subject subject = new Subject(subjectName);
+		//Subject subject = new Subject(subjectName);
 
 		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
-		subjectService = (SubjectService) context.getBean("subjectService");
+		AddNewSubject addNewSubject = (AddNewSubject) context.getBean("");
+		
+		addNewSubject.subject.setSubjectName(subjectName);
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
-			subjectService.addSubject(subject);
+			addNewSubject.subjectService.addSubject(addNewSubject.subject);
+			//subjectService.addSubject(subject);
 		} catch (ServiceException e1) {
 			throw new CommandException();
 		}
