@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+
+	<bean id="addNewStudent" class="by.home.homeproject.command.student.impl.AddNewStudent">
+		<property name="studentService" ref="studentService" />
+	</bean>
+
+	<bean id="deleteStudent" class="by.home.homeproject.command.student.impl.DeleteStudent">
+		<property name="studentService" ref="studentService" />
+	</bean>
+
+	<bean id="showAllAboutStudent"
+		class="by.home.homeproject.command.student.impl.ShowAllAboutStudent">
+		<property name="markService" ref="markService" />
+	</bean>
+
+	<bean id="showAllStudents"
+		class="by.home.homeproject.command.student.impl.ShowAllStudents">
+		<property name="studentService" ref="studentService" />
+	</bean>
+
+	<bean id="updateStudent" class="by.home.homeproject.command.student.impl.UpdateStudent">
+		<property name="studentService" ref="studentService" />
+		<property name="student" ref="student" />
+	</bean>
+
+	<bean id="addMark" class="by.home.homeproject.command.mark.impl.AddMark">
+		<property name="markService" ref="markService" />
+	</bean>
+
+	<bean id="addNewSubject" class="by.home.homeproject.command.subject.impl.AddNewSubject">
+		<property name="subjectService" ref="subjectService" />
+	</bean>
+
+	<bean id="allStudentOnTheSubject"
+		class="by.home.homeproject.command.subject.impl.AllStudentOnTheSubject">
+		<property name="markService" ref="markService" />
+	</bean>
+
+	<bean id="deleteSubject" class="by.home.homeproject.command.subject.impl.DeleteSubject">
+		<property name="subjectService" ref="subjectService" />
+	</bean>
+
+	<bean id="showAllSubjects"
+		class="by.home.homeproject.command.subject.impl.ShowAllSubjects">
+		<property name="subjectService" ref="subjectService" />
+	</bean>
+
+	<bean id="updateSubject"
+		class="by.home.homeproject.command.subject.impl.UpdateSubject">
+		<property name="subjectService" ref="subjectService" />
+	</bean>
+
+</beans>

@@ -5,6 +5,9 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import by.home.homeproject.command.exception.CommandException;
 import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Subject;
@@ -16,6 +19,16 @@ public class UpdateSubject extends BaseCommand {
 
 	private static final String ID = "id";
 	private static final String SUBJECT = "subject";
+	
+	private SubjectService subjectService;
+
+	public SubjectService getSubjectService() {
+		return subjectService;
+	}
+
+	public void setSubjectService(SubjectService subjectService) {
+		this.subjectService = subjectService;
+	}
 
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -23,9 +36,11 @@ public class UpdateSubject extends BaseCommand {
 		String sId = request.getParameter(ID);
 		subject.setId(Integer.valueOf(sId));
 		subject.setSubjectName(request.getParameter(SUBJECT));
-
-		ServiceFactory serviceFactory = ServiceFactory.getInstance();
-		SubjectService subjectService = serviceFactory.getSubjectService();
+		
+		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
+		subjectService = (SubjectService) context.getBean("subjectService");
+		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
+		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
 			subjectService.updateSubject(subject);

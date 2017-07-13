@@ -5,11 +5,13 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import by.home.homeproject.command.exception.CommandException;
 import by.home.homeproject.command.impl.BaseCommand;
 import by.home.homeproject.entity.Mark;
 import by.home.homeproject.service.MarkService;
-import by.home.homeproject.service.ServiceFactory;
 import by.home.homeproject.service.exception.ServiceException;
 
 public class AddMark extends BaseCommand{
@@ -17,6 +19,16 @@ public class AddMark extends BaseCommand{
 	private static final String STUDENT_ID = "studentId";
 	private static final String SUBJECT_ID = "subjectId";
 	private static final String MARK = "mark";
+	
+	private MarkService markService;
+
+	public MarkService getMarkService() {
+		return markService;
+	}
+
+	public void setMarkService(MarkService markService) {
+		this.markService = markService;
+	}
 	
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
@@ -29,8 +41,10 @@ public class AddMark extends BaseCommand{
 		mark.setStudentId(Integer.valueOf(studId));
 		mark.setMark(Integer.valueOf(sMark));
 		
-		ServiceFactory serviceFactory = ServiceFactory.getInstance();
-		MarkService markService = serviceFactory.getMarkService();
+		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
+		markService = (MarkService) context.getBean("markService");
+		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
+		MarkService markService = serviceFactory.getMarkService();*/
 
 			try {
 				markService.addMark(mark);

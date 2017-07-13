@@ -11,6 +11,8 @@
 	<properties>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
+
+		<logFolder></logFolder>
 	</properties>
 
 	<dependencies>
@@ -66,8 +68,22 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.21</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.3.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>4.3.7.RELEASE</version>
+		</dependency>
 	</dependencies>
+	
+	<issueManagement>
+		<url>https://github.com/Ivan-Alfer/HomeProject</url>
+		<system>Github</system>
+	</issueManagement>
 	<build>
 		<finalName>HomeProject</finalName>
 	</build>
