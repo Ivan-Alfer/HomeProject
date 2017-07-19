@@ -1,4 +1,4 @@
-package by.home.homeproject.command.subject.impl;
+package by.home.command.subject.impl;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,20 +8,29 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 
-import by.home.homeproject.command.exception.CommandException;
-import by.home.homeproject.command.impl.BaseCommand;
-import by.home.homeproject.entity.Mark;
-import by.home.homeproject.service.MarkService;
-import by.home.homeproject.service.ServiceFactory;
-import by.home.homeproject.service.exception.ServiceException;
+import by.home.command.exception.CommandException;
+import by.home.command.impl.BaseCommand;
+import by.home.command.mark.impl.AddMark;
+import by.home.entity.Mark;
+import by.home.service.MarkService;
+import by.home.service.exception.ServiceException;
+import by.home.service.impl.MarkServiceImpl;
 
+@Component
+@ComponentScan("by.home")
 public class AllStudentOnTheSubject extends BaseCommand {
 
 	private static final String ID = "id";
 	
+	@Autowired
 	private MarkService markService;
 
 	public MarkService getMarkService() {
@@ -38,8 +47,9 @@ public class AllStudentOnTheSubject extends BaseCommand {
 		String sId = request.getParameter(ID);
 		Integer subjectId = Integer.valueOf(sId);
 
-		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
+		ApplicationContext context =  new AnnotationConfigApplicationContext(AllStudentOnTheSubject.class);
 		AllStudentOnTheSubject allStudentOnTheSubject = (AllStudentOnTheSubject) context.getBean("allStudentOnTheSubject");
+		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markService = serviceFactory.getMarkService();*/
 

@@ -1,4 +1,4 @@
-package by.home.homeproject.command.subject.impl;
+package by.home.command.subject.impl;
 
 import java.io.IOException;
 
@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.home.homeproject.command.exception.CommandException;
-import by.home.homeproject.command.impl.BaseCommand;
-import by.home.homeproject.entity.Subject;
+import by.home.command.exception.CommandException;
+import by.home.command.impl.BaseCommand;
+import by.home.entity.Subject;
 
 
 public class GoToUpdateSubject extends BaseCommand{

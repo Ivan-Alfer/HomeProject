@@ -1,10 +1,10 @@
-package by.home.homeproject.dao;
+package by.home.dao;
 
-import by.home.homeproject.dao.impl.MarkDaoImpl;
-import by.home.homeproject.dao.impl.StudentDaoImpl;
-import by.home.homeproject.dao.impl.SubjectDaoImpl;
-import by.home.homeproject.entity.Student;
-import by.home.homeproject.entity.Subject;
+import by.home.dao.impl.MarkDaoImpl;
+import by.home.dao.impl.StudentDaoImpl;
+import by.home.dao.impl.SubjectDaoImpl;
+import by.home.entity.Student;
+import by.home.entity.Subject;
 
 public class DaoFactory {
 	private static final DaoFactory INSTANSE = new DaoFactory();

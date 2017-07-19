@@ -1,9 +1,12 @@
-package by.home.homeproject.service;
+package by.home.service;
 
 import java.util.List;
 
-import by.home.homeproject.entity.Subject;
-import by.home.homeproject.service.exception.ServiceException;
+import org.springframework.stereotype.Component;
+
+import by.home.entity.Subject;
+import by.home.service.exception.ServiceException;
+
 
 public interface SubjectService {
 

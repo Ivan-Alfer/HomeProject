@@ -1,4 +1,4 @@
-package by.home.homeproject.dao.exception;
+package by.home.dao.exception;
 
 public class DaoException extends Exception{
 	private static final long serialVersionUID = 1L;

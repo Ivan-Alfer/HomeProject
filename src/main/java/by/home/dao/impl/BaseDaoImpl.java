@@ -1,13 +1,15 @@
-package by.home.homeproject.dao.impl;
+package by.home.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
-import by.home.homeproject.dao.BaseDao;
-import by.home.homeproject.dao.exception.DaoException;
+import by.home.dao.BaseDao;
+import by.home.dao.exception.DaoException;
 
+@Component
 public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 
 	protected Session session;

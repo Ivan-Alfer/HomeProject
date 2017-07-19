@@ -1,4 +1,4 @@
-package by.home.homeproject.service.exception;
+package by.home.service.exception;
 
 public class ServiceException extends Exception{
 	private static final long serialVersionUID = 1L;

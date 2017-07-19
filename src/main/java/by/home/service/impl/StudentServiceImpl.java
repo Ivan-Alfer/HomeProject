@@ -1,21 +1,35 @@
-package by.home.homeproject.service.impl;
+package by.home.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import by.home.homeproject.dao.BaseDao;
-import by.home.homeproject.dao.exception.DaoException;
-import by.home.homeproject.entity.Student;
-import by.home.homeproject.service.StudentService;
-import by.home.homeproject.service.exception.ServiceException;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
+import by.home.dao.BaseDao;
+import by.home.dao.exception.DaoException;
+import by.home.dao.impl.StudentDaoImpl;
+import by.home.entity.Student;
+import by.home.service.StudentService;
+import by.home.service.exception.ServiceException;
+
+@Service
+@ComponentScan("by.home")
 public class StudentServiceImpl implements StudentService {
 	
+	public StudentServiceImpl() {
+	}
+	
+	
 	private BaseDao<Student> studentDao;
-	//private ApplicationContext context;
-	//private BeanFactory factory;
-	private ConfigurableApplicationContext context;
+	
+	private ApplicationContext context;
 	
 	public BaseDao<Student> getStudentDao() {
 		return studentDao;
@@ -25,21 +39,17 @@ public class StudentServiceImpl implements StudentService {
 		this.studentDao = studentDao;
 	}
 	
-	//StudentDao student = (StudentDao) factory.getBean("studentDao");
-	
 	//private DaoFactory daoFactory = DaoFactory.getInstance();
 	// private BaseDao<Student> studentDao = daoFactory.getStudentDaoImpl();
 
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public List<Student> getStudents() throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");
-
+		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		studentDao = context.getBean(StudentDaoImpl.class);
 		List<Student> students;
 		try {
-			students = studentService.studentDao.getEntities();
-			//students = studentDao.getEntities();
+			students = studentDao.getEntities();
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -48,11 +58,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void addStudent(Student student) throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");		
+		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
-			studentService.studentDao.addEntity(student);
-			//studentDao.addEntity(student);
+			studentDao.addEntity(student);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -60,11 +69,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void deleteStudent(int id) throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");
+		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
-			studentService.studentDao.deleteEntity(id);
-			//studentDao.deleteEntity(id);
+			studentDao.deleteEntity(id);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -72,12 +80,10 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void updateStudent(Student student) throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		StudentServiceImpl studentService = (StudentServiceImpl) context.getBean("studentService");
-		
+		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
-			studentService.studentDao.updateEntity(student);
-			//studentDao.updateEntity(student);
+			studentDao.updateEntity(student);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}

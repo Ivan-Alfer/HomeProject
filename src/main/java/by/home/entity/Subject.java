@@ -1,4 +1,4 @@
-package by.home.homeproject.entity;
+package by.home.entity;
 
 import java.util.List;
 
@@ -12,6 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+@Component
+@Scope("prototype")
 @Entity
 @Table(name = "subject")
 public class Subject {

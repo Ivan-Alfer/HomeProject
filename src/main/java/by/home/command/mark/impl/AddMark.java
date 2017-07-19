@@ -1,26 +1,39 @@
-package by.home.homeproject.command.mark.impl;
+package by.home.command.mark.impl;
 
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
-import by.home.homeproject.command.exception.CommandException;
-import by.home.homeproject.command.impl.BaseCommand;
-import by.home.homeproject.entity.Mark;
-import by.home.homeproject.service.MarkService;
-import by.home.homeproject.service.exception.ServiceException;
+import by.home.command.exception.CommandException;
+import by.home.command.impl.BaseCommand;
+import by.home.command.impl.ShowAll;
+import by.home.entity.Mark;
+import by.home.service.MarkService;
+import by.home.service.exception.ServiceException;
+import by.home.service.impl.MarkServiceImpl;
 
-public class AddMark extends BaseCommand{
+@Component
+@ComponentScan("by.home")
+public class AddMark extends BaseCommand {
 
 	private static final String STUDENT_ID = "studentId";
 	private static final String SUBJECT_ID = "subjectId";
 	private static final String MARK = "mark";
-	
+
+	@Autowired
 	private MarkService markService;
+	
+	@Autowired
 	private Mark mark;
 
 	public Mark getMark() {
@@ -38,14 +51,11 @@ public class AddMark extends BaseCommand{
 	public void setMarkService(MarkService markService) {
 		this.markService = markService;
 	}
-	
+
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		
-		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
+		ApplicationContext context =  new AnnotationConfigApplicationContext(AddMark.class);
 		AddMark addMark = (AddMark) context.getBean("addMark");
-		
-		
 		
 		//Mark mark = new Mark();
 		String studId=request.getParameter(STUDENT_ID);
@@ -67,12 +77,12 @@ public class AddMark extends BaseCommand{
 			try {
 				addMark.markService.addMark(addMark.mark);
 				//markService.addMark(mark);
-			} catch (ServiceException e1) {
-				throw new CommandException();
-			}
+		} catch (ServiceException e1) {
+			throw new CommandException();
+		}
 
 		try {
-			response.sendRedirect("/HomeProject/all_student_on_the_subject?id="+subId);
+			response.sendRedirect("/HomeProject/all_student_on_the_subject?id=" + subId);
 		} catch (IOException e) {
 			throw new CommandException();
 		}

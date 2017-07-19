@@ -1,20 +1,31 @@
-package by.home.homeproject.service.impl;
+package by.home.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import by.home.homeproject.dao.BaseDao;
-import by.home.homeproject.dao.exception.DaoException;
-import by.home.homeproject.entity.Subject;
-import by.home.homeproject.service.SubjectService;
-import by.home.homeproject.service.exception.ServiceException;
+import by.home.dao.BaseDao;
+import by.home.dao.exception.DaoException;
+import by.home.dao.impl.SubjectDaoImpl;
+import by.home.entity.Subject;
+import by.home.service.SubjectService;
+import by.home.service.exception.ServiceException;
 
+@Service
+@ComponentScan("by.home")
 public class SubjectServiceImpl implements SubjectService {
 	
+	
 	private BaseDao<Subject> subjectDao;
-	private ConfigurableApplicationContext context;
+	
+	private ApplicationContext context;
 
 	/*private DaoFactory daoFactory = DaoFactory.getInstance();
 	private BaseDao<Subject> subjectDao = daoFactory.getSubjectDaoImpl();*/
@@ -29,12 +40,11 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<Subject> getSubjects() throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
+		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		subjectDao = context.getBean(SubjectDaoImpl.class);
 		List<Subject> subjects;
 		try {
-			subjects = subjectService.subjectDao.getEntities();
-			//subjects = subjectDao.getEntities();
+			subjects = subjectDao.getEntities();
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -43,11 +53,10 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public void addSubject(Subject subject) throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
+		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
-			subjectService.subjectDao.addEntity(subject);
-			//subjectDao.addEntity(subject);
+			subjectDao.addEntity(subject);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -56,11 +65,10 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public void deleteSubject(int id) throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
+		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
-			subjectService.subjectDao.deleteEntity(id);
-			//subjectDao.deleteEntity(id);
+			subjectDao.deleteEntity(id);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}
@@ -69,11 +77,10 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public void updateSubject(Subject subject) throws ServiceException {
-		context = new ClassPathXmlApplicationContext("springbeans.xml");
-		SubjectServiceImpl subjectService = (SubjectServiceImpl) context.getBean("subjectService");
+		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
-			subjectService.subjectDao.updateEntity(subject);
-			//subjectDao.updateEntity(subject);
+			subjectDao.updateEntity(subject);
 		} catch (DaoException e) {
 			throw new ServiceException();
 		}

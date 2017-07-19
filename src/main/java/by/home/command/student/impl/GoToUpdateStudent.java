@@ -1,4 +1,4 @@
-package by.home.homeproject.command.student.impl;
+package by.home.command.student.impl;
 
 import java.io.IOException;
 
@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.home.homeproject.command.exception.CommandException;
-import by.home.homeproject.command.impl.BaseCommand;
-import by.home.homeproject.entity.Student;
+import by.home.command.exception.CommandException;
+import by.home.command.impl.BaseCommand;
+import by.home.entity.Student;
 
 public class GoToUpdateStudent extends BaseCommand {
 

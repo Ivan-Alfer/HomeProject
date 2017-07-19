@@ -14,8 +14,8 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.Assert;
 import org.junit.Test;
 
-import by.home.homeproject.dao.impl.SubjectDaoImpl;
-import by.home.homeproject.entity.Subject;
+import by.home.dao.impl.SubjectDaoImpl;
+import by.home.entity.Subject;
 import by.home.homeproject.hibernateutil.HibernateUtil;
 
 public class DBSubjectDaoTest extends DBBaseDaoTest {

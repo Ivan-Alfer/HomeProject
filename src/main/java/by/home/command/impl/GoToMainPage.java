@@ -1,4 +1,4 @@
-package by.home.homeproject.command.impl;
+package by.home.command.impl;
 
 import java.io.IOException;
 
@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.home.homeproject.command.exception.CommandException;
+import by.home.command.exception.CommandException;
 
 public class GoToMainPage extends BaseCommand {
 

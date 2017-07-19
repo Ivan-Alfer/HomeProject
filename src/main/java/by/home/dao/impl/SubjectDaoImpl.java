@@ -1,9 +1,11 @@
-package by.home.homeproject.dao.impl;
+package by.home.dao.impl;
 
 import org.hibernate.Session;
+import org.springframework.stereotype.Component;
 
-import by.home.homeproject.entity.Subject;
+import by.home.entity.Subject;
 
+@Component
 public class SubjectDaoImpl extends BaseDaoImpl<Subject> {
 
 	public SubjectDaoImpl() {

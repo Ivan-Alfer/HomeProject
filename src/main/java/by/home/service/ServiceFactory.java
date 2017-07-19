@@ -1,8 +1,8 @@
-package by.home.homeproject.service;
+package by.home.service;
 
-import by.home.homeproject.service.impl.MarkServiceImpl;
-import by.home.homeproject.service.impl.StudentServiceImpl;
-import by.home.homeproject.service.impl.SubjectServiceImpl;
+import by.home.service.impl.MarkServiceImpl;
+import by.home.service.impl.StudentServiceImpl;
+import by.home.service.impl.SubjectServiceImpl;
 
 public class ServiceFactory {
 private static final ServiceFactory INSTANCE = new ServiceFactory();

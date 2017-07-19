@@ -1,9 +1,12 @@
-package by.home.homeproject.dao;
+package by.home.dao;
 
 import java.util.List;
 
-import by.home.homeproject.entity.Student;
+import org.springframework.stereotype.Component;
 
+import by.home.entity.Student;
+
+@Component
 public interface StudentDao {
 
 	void addStudent(Student student);

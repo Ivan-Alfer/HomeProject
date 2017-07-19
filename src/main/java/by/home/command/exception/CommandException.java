@@ -1,4 +1,4 @@
-package by.home.homeproject.command.exception;
+package by.home.command.exception;
 
 public class CommandException extends Exception{
 	private static final long serialVersionUID = 1L;

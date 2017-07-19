@@ -1,10 +1,13 @@
-package by.home.homeproject.dao;
+package by.home.dao;
 
 import java.util.List;
 
-import by.home.homeproject.dao.exception.DaoException;
-import by.home.homeproject.entity.Mark;
+import org.springframework.stereotype.Component;
 
+import by.home.dao.exception.DaoException;
+import by.home.entity.Mark;
+
+@Component
 public interface MarkDao extends BaseDao<Mark>{
 
 	public List<Mark> getAllEntities() throws DaoException;

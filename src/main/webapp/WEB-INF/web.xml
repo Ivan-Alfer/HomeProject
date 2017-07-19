@@ -7,7 +7,7 @@
 
 	<servlet>
 		<servlet-name>go_to_main_page</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>GO_TO_MAIN_PAGE</param-value>
@@ -20,7 +20,7 @@
 
 	<servlet>
 		<servlet-name>all_students</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>SHOW_ALL_STUDENTS</param-value>
@@ -42,7 +42,7 @@
 
 	<servlet>
 		<servlet-name>all_subjects</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>SHOW_ALL_SUBJECTS</param-value>
@@ -55,7 +55,7 @@
 
 	<servlet>
 		<servlet-name>delete_student</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>DELETE_STUDENT</param-value>
@@ -68,7 +68,7 @@
 
 	<servlet>
 		<servlet-name>go_to_update_student</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>GO_TO_UPDATE_STUDENT</param-value>
@@ -81,7 +81,7 @@
 
 	<servlet>
 		<servlet-name>all</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>SHOW_ALL</param-value>
@@ -94,7 +94,7 @@
 
 	<servlet>
 		<servlet-name>all_about_student</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>SHOW_ALL_ABOUT_STUDENT</param-value>
@@ -118,7 +118,7 @@
 
 	<servlet>
 		<servlet-name>go_to_update_subject</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>GO_TO_UPDATE_SUBJECT</param-value>
@@ -133,7 +133,7 @@
 
 	<servlet>
 		<servlet-name>delete_subject</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>DELETE_SUBJECT</param-value>
@@ -146,7 +146,7 @@
 
 	<servlet>
 		<servlet-name>all_student_on_the_subject</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>ALL_STUDENT_ON_THE_SUBJECT</param-value>
@@ -159,7 +159,7 @@
 
 	<servlet>
 		<servlet-name>go_to_add_mark</servlet-name>
-		<servlet-class>by.home.homeproject.controller.Controller</servlet-class>
+		<servlet-class>by.home.controller.Controller</servlet-class>
 		<init-param>
 			<param-name>command</param-name>
 			<param-value>GO_TO_ADD_MARK</param-value>

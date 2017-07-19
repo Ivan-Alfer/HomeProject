@@ -1,9 +1,9 @@
-package by.home.homeproject.service;
+package by.home.service;
 
 import java.util.List;
 
-import by.home.homeproject.entity.Mark;
-import by.home.homeproject.service.exception.ServiceException;
+import by.home.entity.Mark;
+import by.home.service.exception.ServiceException;
 
 public interface MarkService {
 	

@@ -1,26 +1,33 @@
-package by.home.homeproject.command.student.impl;
+package by.home.command.student.impl;
 
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
-import by.home.homeproject.command.exception.CommandException;
-import by.home.homeproject.command.impl.BaseCommand;
-import by.home.homeproject.entity.Student;
-import by.home.homeproject.service.StudentService;
-import by.home.homeproject.service.exception.ServiceException;
+import by.home.command.exception.CommandException;
+import by.home.command.impl.BaseCommand;
+import by.home.entity.Student;
+import by.home.service.StudentService;
+import by.home.service.exception.ServiceException;
 
-
+@Component
+@ComponentScan("by.home")
 public class AddNewStudent extends BaseCommand{
 
 	private static final String FIRST_NAME = "first name";
 	private static final String LAST_NAME = "last name";
 	
+	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
 	private Student student;
 
 
@@ -46,7 +53,7 @@ public class AddNewStudent extends BaseCommand{
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		
-		ConfigurableApplicationContext context = new ClassPathXmlApplicationContext("springbeans.xml");
+		ApplicationContext context =  new AnnotationConfigApplicationContext(AddNewStudent.class);
 		AddNewStudent addNewStudent = (AddNewStudent) context.getBean("addNewStudent");
 		
 		String firstName = request.getParameter(FIRST_NAME);

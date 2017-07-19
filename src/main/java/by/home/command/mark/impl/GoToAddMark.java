@@ -1,4 +1,4 @@
-package by.home.homeproject.command.mark.impl;
+package by.home.command.mark.impl;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,12 +8,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.home.homeproject.command.exception.CommandException;
-import by.home.homeproject.command.impl.BaseCommand;
-import by.home.homeproject.entity.Student;
-import by.home.homeproject.service.ServiceFactory;
-import by.home.homeproject.service.StudentService;
-import by.home.homeproject.service.exception.ServiceException;
+import by.home.command.exception.CommandException;
+import by.home.command.impl.BaseCommand;
+import by.home.entity.Student;
+import by.home.service.ServiceFactory;
+import by.home.service.StudentService;
+import by.home.service.exception.ServiceException;
 
 public class GoToAddMark extends BaseCommand {
 

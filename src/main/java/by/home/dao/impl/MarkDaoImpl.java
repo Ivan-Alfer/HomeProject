@@ -1,12 +1,15 @@
-package by.home.homeproject.dao.impl;
+package by.home.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import by.home.homeproject.dao.MarkDao;
-import by.home.homeproject.dao.exception.DaoException;
-import by.home.homeproject.entity.Mark;
+import org.springframework.stereotype.Component;
 
+import by.home.dao.MarkDao;
+import by.home.dao.exception.DaoException;
+import by.home.entity.Mark;
+
+@Component
 public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 
 	public MarkDaoImpl() {

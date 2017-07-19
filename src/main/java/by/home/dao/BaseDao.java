@@ -1,8 +1,8 @@
-package by.home.homeproject.dao;
+package by.home.dao;
 
 import java.util.List;
 
-import by.home.homeproject.dao.exception.DaoException;
+import by.home.dao.exception.DaoException;
 
 public interface BaseDao<T> {
 

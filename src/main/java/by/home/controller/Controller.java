@@ -1,4 +1,4 @@
-package by.home.homeproject.controller;
+package by.home.controller;
 
 import java.io.UnsupportedEncodingException;
 
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.home.homeproject.command.Command;
+import by.home.command.Command;
 
 public class Controller extends HttpServlet {
 

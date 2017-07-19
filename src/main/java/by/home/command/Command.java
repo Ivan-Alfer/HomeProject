@@ -1,4 +1,4 @@
-package by.home.homeproject.command;
+package by.home.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

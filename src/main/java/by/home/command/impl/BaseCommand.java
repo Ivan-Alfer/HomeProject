@@ -1,10 +1,10 @@
-package by.home.homeproject.command.impl;
+package by.home.command.impl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.home.homeproject.command.Command;
-import by.home.homeproject.command.exception.CommandException;
+import by.home.command.Command;
+import by.home.command.exception.CommandException;
 
 public abstract class BaseCommand implements Command {
 

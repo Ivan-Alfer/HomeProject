@@ -1,6 +1,6 @@
-package by.home.homeproject.controller;
+package by.home.controller;
 
-public enum CommandName {
+public enum CommandNames {
 
 	GO_TO_MAIN_PAGE, SHOW_ALL_STUDENTS, SHOW_ALL_SUBJECTS, SHOW_ALL, SHOW_ALL_ABOUT_STUDENT, ADD_NEW_STUDENT,
 	ADD_NEW_SUBJECT, GO_TO_UPDATE_STUDENT, UPDATE_STUDENT, DELETE_STUDENT, GO_TO_UPDATE_SUBJECT, UPDATE_SUBJECT, DELETE_SUBJECT, 
