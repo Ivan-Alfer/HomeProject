@@ -52,13 +52,11 @@ public class ShowAll extends BaseCommand {
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markDao = serviceFactory.getMarkService();*/
 
-		ApplicationContext context =  new AnnotationConfigApplicationContext(ShowAll.class);
-		ShowAll showAll = (ShowAll) context.getBean("showAll");
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markDao = serviceFactory.getMarkService();*/
 
 		try {
-			marks = showAll.markService.getAllEntities();
+			marks = markService.getAllEntities();
 			//marks = markDao.getAllEntities();
 		} catch (ServiceException e1) {
 			throw new CommandException("Could not show all notes");

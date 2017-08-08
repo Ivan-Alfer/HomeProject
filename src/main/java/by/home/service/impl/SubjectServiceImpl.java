@@ -38,8 +38,6 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<Subject> getSubjects() throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
-		subjectDao = context.getBean(SubjectDaoImpl.class);
 		List<Subject> subjects;
 		try {
 			subjects = subjectDao.getEntities();
@@ -51,8 +49,6 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public void addSubject(Subject subject) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
-		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
 			subjectDao.addEntity(subject);
 		} catch (DaoException e) {
@@ -63,8 +59,6 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public void deleteSubject(int id) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
-		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
 			subjectDao.deleteEntity(id);
 		} catch (DaoException e) {
@@ -75,8 +69,6 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public void updateSubject(Subject subject) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
-		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
 			subjectDao.updateEntity(subject);
 		} catch (DaoException e) {

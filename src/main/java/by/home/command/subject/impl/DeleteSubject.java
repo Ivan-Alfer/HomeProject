@@ -8,18 +8,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import by.home.command.exception.CommandException;
 import by.home.command.impl.BaseCommand;
-import by.home.command.mark.impl.AddMark;
 import by.home.service.SubjectService;
 import by.home.service.exception.ServiceException;
-import by.home.service.impl.SubjectServiceImpl;
 
 @Component
 @ComponentScan("by.home")
@@ -42,15 +38,12 @@ public class DeleteSubject extends BaseCommand {
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		String sId = request.getParameter(ID);
 		Integer id = Integer.valueOf(sId);
-
-		ApplicationContext context =  new AnnotationConfigApplicationContext(DeleteSubject.class);
-		DeleteSubject deleteSubject = (DeleteSubject) context.getBean("deleteSubject");
 		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
-			deleteSubject.subjectService.deleteSubject(id);
+			subjectService.deleteSubject(id);
 			//subjectService.deleteSubject(id);
 		} catch (ServiceException e1) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/HomeProject/error");

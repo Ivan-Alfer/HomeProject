@@ -23,6 +23,7 @@ import by.home.service.exception.ServiceException;
 @ComponentScan("by.home")
 public class StudentServiceImpl implements StudentService {
 	
+	@Autowired
 	private BaseDao<Student> studentDao;
 	
 	public BaseDao<Student> getStudentDao() {
@@ -39,8 +40,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> getStudents() throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
-		studentDao = context.getBean(StudentDaoImpl.class);
 		List<Student> students;
 		try {
 			students = studentDao.getEntities();
@@ -52,8 +51,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void addStudent(Student student) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
-		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
 			studentDao.addEntity(student);
 		} catch (DaoException e) {
@@ -63,8 +60,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void deleteStudent(int id) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
-		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
 			studentDao.deleteEntity(id);
 		} catch (DaoException e) {
@@ -74,8 +69,6 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void updateStudent(Student student) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
-		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
 			studentDao.updateEntity(student);
 		} catch (DaoException e) {

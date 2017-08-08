@@ -9,14 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import by.home.command.exception.CommandException;
 import by.home.command.impl.BaseCommand;
-import by.home.command.impl.ConfigurationBean;
 import by.home.entity.Student;
 import by.home.service.StudentService;
 import by.home.service.exception.ServiceException;
@@ -41,19 +38,11 @@ public class ShowAllStudents extends BaseCommand {
 
 		List<Student> students;
 		
-	
-		ApplicationContext context =  new AnnotationConfigApplicationContext(ConfigurationBean.class);
-		
-		ShowAllStudents showAllStudents = (ShowAllStudents) context.getBean("showAllStudents");
-		
-		
-		
-		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();*/
 
 		try {
-			students = showAllStudents.studentService.getStudents();
+			students = studentService.getStudents();
 			//students = studentService.getStudents();
 		} catch (ServiceException e1) {
 			throw new CommandException("Could not show all students");

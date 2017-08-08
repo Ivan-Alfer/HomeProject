@@ -54,16 +54,13 @@ public class AddNewSubject extends BaseCommand {
 		String subjectName = request.getParameter(SUBJECT_NAME);
 		//Subject subject = new Subject(subjectName);
 
-		ApplicationContext context =  new AnnotationConfigApplicationContext(AddNewSubject.class);
-		AddNewSubject addNewSubject = (AddNewSubject) context.getBean("addNewSubject");
-		
-		addNewSubject.subject.setSubjectName(subjectName);
+		subject.setSubjectName(subjectName);
 		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
-			addNewSubject.subjectService.addSubject(addNewSubject.subject);
+			subjectService.addSubject(subject);
 			//subjectService.addSubject(subject);
 		} catch (ServiceException e1) {
 			throw new CommandException("Could not add new subject");

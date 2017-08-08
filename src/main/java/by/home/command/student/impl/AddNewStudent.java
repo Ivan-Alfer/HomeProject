@@ -53,14 +53,11 @@ public class AddNewStudent extends BaseCommand{
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		
-		ApplicationContext context =  new AnnotationConfigApplicationContext(AddNewStudent.class);
-		AddNewStudent addNewStudent = (AddNewStudent) context.getBean("addNewStudent");
-		
 		String firstName = request.getParameter(FIRST_NAME);
 		String lastName = request.getParameter(LAST_NAME);
 		
-		addNewStudent.student.setFirstName(firstName);
-		addNewStudent.student.setLastName(lastName);
+		student.setFirstName(firstName);
+		student.setLastName(lastName);
 		
 		/*Student student = new Student();
 		student.setFirstName(firstName);
@@ -70,7 +67,7 @@ public class AddNewStudent extends BaseCommand{
 		StudentService studentService = serviceFactory.getStudentService();*/
 		
 		try {
-			addNewStudent.studentService.addStudent(addNewStudent.student);
+			studentService.addStudent(student);
 			//studentService.addStudent(student);
 		} catch (ServiceException e) {
 			throw new CommandException("Could not add student");

@@ -8,20 +8,38 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+
 import by.home.command.exception.CommandException;
 import by.home.command.impl.BaseCommand;
 import by.home.entity.Student;
+import by.home.service.MarkService;
 import by.home.service.ServiceFactory;
 import by.home.service.StudentService;
 import by.home.service.exception.ServiceException;
 
+@Component
+@ComponentScan("by.home")
 public class GoToAddMark extends BaseCommand {
+
+	@Autowired
+	private StudentService studentService;
+	
+	public StudentService getStudentService() {
+		return studentService;
+	}
+
+	public void setStudentService(StudentService studentService) {
+		this.studentService = studentService;
+	}
 
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 
-		ServiceFactory serviceFactory = ServiceFactory.getInstance();
-		StudentService studentService = serviceFactory.getStudentService();
+/*		ServiceFactory serviceFactory = ServiceFactory.getInstance();
+		StudentService studentService = serviceFactory.getStudentService();*/
 
 		List<Student> students;
 		try {

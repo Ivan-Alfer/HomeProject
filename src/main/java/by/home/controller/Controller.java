@@ -38,11 +38,21 @@ public class Controller extends HttpServlet {
 			nameCommand = getInitParameter(COMMAND);
 		}
 
-		//CommandNames commandName = CommandNames.valueOf(nameCommand.toUpperCase());
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationBean.class);
-		BaseCommand command = (BaseCommand) context.getBean(nameCommand);
-		command.execute(request, response);
+		// CommandNames commandName =
+		// CommandNames.valueOf(nameCommand.toUpperCase());
+		AnnotationConfigApplicationContext context = null;
+		try {
+			context = new AnnotationConfigApplicationContext(ConfigurationBean.class);
 
+			BaseCommand command = (BaseCommand) context.getBean(nameCommand);
+			command.execute(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (context != null) {
+				context.close();
+			}
+		}
 		/*
 		 * Command command = commandHelper.getCommand(nameCommand);
 		 * command.execute(request, response);

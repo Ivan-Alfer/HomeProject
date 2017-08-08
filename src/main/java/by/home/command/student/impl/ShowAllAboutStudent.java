@@ -48,14 +48,11 @@ public class ShowAllAboutStudent extends BaseCommand {
 
 		List<Mark> marks;
 
-		ApplicationContext context =  new AnnotationConfigApplicationContext(ShowAllAboutStudent.class);
-		ShowAllAboutStudent showAllAboutStudent = (ShowAllAboutStudent) context.getBean("showAllAboutStudent");
-		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		MarkService markService = serviceFactory.getMarkService();*/
 
 		try {
-			marks = showAllAboutStudent.markService.getAllAboutStudent(studentId);
+			marks = markService.getAllAboutStudent(studentId);
 			//marks = markService.getAllAboutStudent(studentId);
 		} catch (ServiceException e1) {
 			throw new CommandException("Could not show all about student");

@@ -56,11 +56,8 @@ public class UpdateSubject extends BaseCommand {
 		 * subject.setSubjectName(request.getParameter(SUBJECT));
 		 */
 
-		ApplicationContext context =  new AnnotationConfigApplicationContext(UpdateSubject.class);
-		UpdateSubject updateSubject = (UpdateSubject) context.getBean("updateSubject");
-
-		updateSubject.subject.setId(Integer.valueOf(sId));
-		updateSubject.subject.setSubjectName(request.getParameter(SUBJECT));
+		subject.setId(Integer.valueOf(sId));
+		subject.setSubjectName(request.getParameter(SUBJECT));
 
 		/*
 		 * ServiceFactory serviceFactory = ServiceFactory.getInstance();
@@ -68,7 +65,7 @@ public class UpdateSubject extends BaseCommand {
 		 */
 
 		try {
-			updateSubject.subjectService.updateSubject(updateSubject.subject);
+			subjectService.updateSubject(subject);
 			// subjectService.updateSubject(subject);
 		} catch (ServiceException e1) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/HomeProject/error");

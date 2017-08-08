@@ -23,6 +23,7 @@ import by.home.service.exception.ServiceException;
 @ComponentScan("by.home")
 public class MarkServiceImpl implements MarkService {
 	
+	@Autowired
 	private MarkDao markDao;
 
 	public MarkDao getMarkDao() {
@@ -40,8 +41,6 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public List<Mark> getMarks() throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
-		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getEntities();
@@ -53,8 +52,6 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public void addMark(Mark mark) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
-		markDao = context.getBean(MarkDaoImpl.class);
 		try {
 			markDao.addEntity(mark);
 		} catch (DaoException e) {
@@ -64,8 +61,6 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public void deleteMark(int id) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
-		markDao = context.getBean(MarkDaoImpl.class);
 		try {
 			markDao.deleteEntity(id);
 		} catch (DaoException e) {
@@ -76,8 +71,6 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public void updateMark(Mark mark) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
-		markDao = context.getBean(MarkDaoImpl.class);
 		try {
 			markDao.updateEntity(mark);
 		} catch (DaoException e) {
@@ -88,8 +81,6 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public List<Mark> getAllEntities() throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
-		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getAllEntities();
@@ -101,8 +92,6 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public List<Mark> getAllAboutStudent(Integer studentId) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
-		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getAllAboutStudent(studentId);
@@ -114,8 +103,6 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public List<Mark> getAllStudentOnTheSubject(Integer subjectId) throws ServiceException {
-		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
-		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getAllStudentOnTheSubject(subjectId);

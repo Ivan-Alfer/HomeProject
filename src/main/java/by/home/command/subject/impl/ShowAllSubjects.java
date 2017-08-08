@@ -39,14 +39,11 @@ public class ShowAllSubjects extends BaseCommand {
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 		List<Subject> subjects;
 
-		ApplicationContext context =  new AnnotationConfigApplicationContext(ShowAllSubjects.class);
-		ShowAllSubjects showAllSubjects = (ShowAllSubjects) context.getBean("showAllSubjects");
-		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		SubjectService subjectService = serviceFactory.getSubjectService();*/
 
 		try {
-			subjects = showAllSubjects.subjectService.getSubjects();
+			subjects = subjectService.getSubjects();
 			//subjects = subjectService.getSubjects();
 		} catch (ServiceException e1) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/HomeProject/error");

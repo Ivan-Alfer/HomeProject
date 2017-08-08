@@ -57,14 +57,11 @@ public class UpdateStudent extends BaseCommand {
 
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
-		
-		ApplicationContext context =  new AnnotationConfigApplicationContext(UpdateStudent.class);
-		UpdateStudent upd = (UpdateStudent) context.getBean("updateStudent");
-		
+
 		String sId = request.getParameter(ID);
-		upd.student.setFirstName(request.getParameter(FIRST_NAME));
-		upd.student.setId(Integer.valueOf(sId));
-		upd.student.setLastName(request.getParameter(LAST_NAME));
+		student.setFirstName(request.getParameter(FIRST_NAME));
+		student.setId(Integer.valueOf(sId));
+		student.setLastName(request.getParameter(LAST_NAME));
 		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();*/
@@ -75,7 +72,7 @@ public class UpdateStudent extends BaseCommand {
 		student.setLastName(request.getParameter(LAST_NAME));*/
 		
 		try {
-			upd.studentService.updateStudent(upd.student);
+			studentService.updateStudent(student);
 			//studentService.updateStudent(student);
 		} catch (ServiceException e) {
 			throw new CommandException("Could not update student");
