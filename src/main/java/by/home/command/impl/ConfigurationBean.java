@@ -18,17 +18,10 @@ import by.home.command.subject.impl.DeleteSubject;
 import by.home.command.subject.impl.GoToUpdateSubject;
 import by.home.command.subject.impl.ShowAllSubjects;
 import by.home.command.subject.impl.UpdateSubject;
-import by.home.controller.CommandNames;
 
 @Configuration
 @ComponentScan("by.home")
 public class ConfigurationBean {
-	
-	private String nameBean;
-	
-	public ConfigurationBean(String nameBean) {
-		this.nameBean = nameBean;
-	}
 
 	@Bean(name = "SHOW_ALL_STUDENTS")
 	  public ShowAllStudents getShowAllStudents() {

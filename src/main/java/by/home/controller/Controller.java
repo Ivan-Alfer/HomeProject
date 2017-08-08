@@ -11,6 +11,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.annotation.ComponentScan;
 
 import by.home.command.Command;
+import by.home.command.impl.BaseCommand;
 import by.home.command.impl.ConfigurationBean;
 import by.home.command.impl.ShowAll;
 
@@ -37,13 +38,14 @@ public class Controller extends HttpServlet {
 			nameCommand = getInitParameter(COMMAND);
 		}
 
-		CommandNames commandName = CommandNames.valueOf(nameCommand.toUpperCase());
-		AnnotationConfigApplicationContext context =  new AnnotationConfigApplicationContext();
-		context.register(ConfigurationBean.class);
-		context.refresh();
-		context.getBean(nameCommand);
-		
-		/*Command command = commandHelper.getCommand(nameCommand);
-		command.execute(request, response);*/
+		//CommandNames commandName = CommandNames.valueOf(nameCommand.toUpperCase());
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigurationBean.class);
+		BaseCommand command = (BaseCommand) context.getBean(nameCommand);
+		command.execute(request, response);
+
+		/*
+		 * Command command = commandHelper.getCommand(nameCommand);
+		 * command.execute(request, response);
+		 */
 	}
 }
