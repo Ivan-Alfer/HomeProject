@@ -1,0 +1,7 @@
+/target/
+/test-output/
+/workspace/
+/.classpath
+/.settings
+/.project
+/.tern-project
