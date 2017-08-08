@@ -49,7 +49,8 @@ public class ShowAllSubjects extends BaseCommand {
 			subjects = showAllSubjects.subjectService.getSubjects();
 			//subjects = subjectService.getSubjects();
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/HomeProject/error");
+			throw new CommandException("Could not show all subjects");
 		}
 
 		request.setAttribute("subjects", subjects);
@@ -57,7 +58,7 @@ public class ShowAllSubjects extends BaseCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 
 	}

@@ -6,17 +6,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.home.command.Command;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
+import by.home.command.Command;
+import by.home.command.impl.ConfigurationBean;
+import by.home.command.impl.ShowAll;
+
+@ComponentScan("by.home")
 public class Controller extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	private final CommandHelper commandHelper = new CommandHelper();
 	private static final String COMMAND = "command";
-
-	public Controller() {
-		super();
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		doPost(request, response);
@@ -34,7 +37,13 @@ public class Controller extends HttpServlet {
 			nameCommand = getInitParameter(COMMAND);
 		}
 
-		Command command = commandHelper.getCommand(nameCommand);
-		command.execute(request, response);
+		CommandNames commandName = CommandNames.valueOf(nameCommand.toUpperCase());
+		AnnotationConfigApplicationContext context =  new AnnotationConfigApplicationContext();
+		context.register(ConfigurationBean.class);
+		context.refresh();
+		context.getBean(nameCommand);
+		
+		/*Command command = commandHelper.getCommand(nameCommand);
+		command.execute(request, response);*/
 	}
 }

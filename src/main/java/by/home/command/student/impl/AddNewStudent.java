@@ -73,13 +73,13 @@ public class AddNewStudent extends BaseCommand{
 			addNewStudent.studentService.addStudent(addNewStudent.student);
 			//studentService.addStudent(student);
 		} catch (ServiceException e) {
-			throw new CommandException();
+			throw new CommandException("Could not add student");
 		}
 		
 		try {
 			response.sendRedirect("/HomeProject/all_students");
 		} catch (IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 	}
 }

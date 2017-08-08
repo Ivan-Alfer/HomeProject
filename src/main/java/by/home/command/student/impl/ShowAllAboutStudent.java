@@ -58,7 +58,7 @@ public class ShowAllAboutStudent extends BaseCommand {
 			marks = showAllAboutStudent.markService.getAllAboutStudent(studentId);
 			//marks = markService.getAllAboutStudent(studentId);
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			throw new CommandException("Could not show all about student");
 		}
 
 		request.setAttribute("marks", marks);
@@ -66,7 +66,7 @@ public class ShowAllAboutStudent extends BaseCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 
 	}

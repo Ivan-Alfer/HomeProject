@@ -10,9 +10,9 @@ import by.home.entity.Mark;
 @Component
 public interface MarkDao extends BaseDao<Mark>{
 
-	public List<Mark> getAllEntities() throws DaoException;
+	List<Mark> getAllEntities() throws DaoException;
 
-	public List<Mark> getAllAboutStudent(Integer studentId) throws DaoException;
+	List<Mark> getAllAboutStudent(Integer studentId) throws DaoException;
 
-	public List<Mark> getAllStudentOnTheSubject(Integer subjectId) throws DaoException;
+	List<Mark> getAllStudentOnTheSubject(Integer subjectId) throws DaoException;
 }

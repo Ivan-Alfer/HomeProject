@@ -8,11 +8,11 @@ import by.home.entity.Subject;
 @Component
 public class SubjectDaoImpl extends BaseDaoImpl<Subject> {
 
-	public SubjectDaoImpl() {
-	}
-	
 	public SubjectDaoImpl(Session session) {
 		super(session);
+	}
+	
+	public SubjectDaoImpl() {
 	}
 	
 	@Override

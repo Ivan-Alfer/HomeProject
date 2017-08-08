@@ -58,15 +58,15 @@ public class AllStudentOnTheSubject extends BaseCommand {
 			marks = allStudentOnTheSubject.markService.getAllStudentOnTheSubject(subjectId);
 			//marks = markService.getAllStudentOnTheSubject(subjectId);
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			throw new CommandException("Could not show all student on the subject");
 		}
 
 		request.setAttribute("marks", marks);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/all_student_on_the_subject.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("all_student_on_the_subject.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 
 	}

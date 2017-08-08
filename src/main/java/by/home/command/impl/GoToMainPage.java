@@ -6,8 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
+
 import by.home.command.exception.CommandException;
 
+@Component
+@ComponentScan("by.home")
 public class GoToMainPage extends BaseCommand {
 
 	@Override
@@ -16,7 +21,7 @@ public class GoToMainPage extends BaseCommand {
 		try {
 			request.getRequestDispatcher("/WEB-INF/jsp/main.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException("Could not go to the page");
 		}
 
 	}

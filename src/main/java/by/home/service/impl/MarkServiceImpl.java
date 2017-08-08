@@ -33,8 +33,6 @@ public class MarkServiceImpl implements MarkService {
 		this.markDao = markDao;
 	}
 
-	private ApplicationContext context;
-
 	/*
 	 * private DaoFactory daoFactory = DaoFactory.getInstance(); private MarkDao
 	 * markDao = daoFactory.getMarkDaoImpl();
@@ -42,87 +40,87 @@ public class MarkServiceImpl implements MarkService {
 
 	@Override
 	public List<Mark> getMarks() throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
 		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getEntities();
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 		return marks;
 	}
 
 	@Override
 	public void addMark(Mark mark) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
 		markDao = context.getBean(MarkDaoImpl.class);
 		try {
 			markDao.addEntity(mark);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 	}
 
 	@Override
 	public void deleteMark(int id) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
 		markDao = context.getBean(MarkDaoImpl.class);
 		try {
 			markDao.deleteEntity(id);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 
 	}
 
 	@Override
 	public void updateMark(Mark mark) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
 		markDao = context.getBean(MarkDaoImpl.class);
 		try {
 			markDao.updateEntity(mark);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 
 	}
 
 	@Override
 	public List<Mark> getAllEntities() throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
 		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getAllEntities();
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 		return marks;
 	}
 
 	@Override
 	public List<Mark> getAllAboutStudent(Integer studentId) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
 		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getAllAboutStudent(studentId);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 		return marks;
 	}
 
 	@Override
 	public List<Mark> getAllStudentOnTheSubject(Integer subjectId) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(MarkServiceImpl.class);
 		markDao = context.getBean(MarkDaoImpl.class);
 		List<Mark> marks;
 		try {
 			marks = markDao.getAllStudentOnTheSubject(subjectId);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 		return marks;
 	}

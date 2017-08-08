@@ -7,7 +7,6 @@ import by.home.entity.Student;
 
 @Component
 public class StudentDaoImpl extends BaseDaoImpl<Student> {
-
 	
 	public StudentDaoImpl(Session session) {
 		super(session);

@@ -6,7 +6,11 @@ public class CommandException extends Exception{
 	public CommandException() {
 	}
 
-	public CommandException(String massage) {
-		super(massage);
+	public CommandException(String message) {
+		super(message);
+	}
+	
+	public CommandException(Exception e){
+		
 	}
 }

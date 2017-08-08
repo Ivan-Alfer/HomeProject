@@ -27,7 +27,7 @@ public class GoToAddMark extends BaseCommand {
 		try {
 			students = studentService.getStudents();
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			throw new CommandException("Could not go to the page");
 		}
 
 		request.setAttribute("students", students);
@@ -35,7 +35,7 @@ public class GoToAddMark extends BaseCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 
 	}

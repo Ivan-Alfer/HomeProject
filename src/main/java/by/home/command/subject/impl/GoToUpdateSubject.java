@@ -29,7 +29,7 @@ public class GoToUpdateSubject extends BaseCommand{
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException("Could not go to the page");
 		}
 		
 	}

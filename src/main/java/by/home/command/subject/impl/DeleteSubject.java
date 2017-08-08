@@ -2,6 +2,7 @@ package by.home.command.subject.impl;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -52,7 +53,8 @@ public class DeleteSubject extends BaseCommand {
 			deleteSubject.subjectService.deleteSubject(id);
 			//subjectService.deleteSubject(id);
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/HomeProject/error");
+			throw new CommandException("Could not delete subject");
 		}
 
 		try {

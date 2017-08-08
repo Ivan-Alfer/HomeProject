@@ -22,11 +22,9 @@ import by.home.service.exception.ServiceException;
 @ComponentScan("by.home")
 public class SubjectServiceImpl implements SubjectService {
 	
-	
+	@Autowired
 	private BaseDao<Subject> subjectDao;
 	
-	private ApplicationContext context;
-
 	/*private DaoFactory daoFactory = DaoFactory.getInstance();
 	private BaseDao<Subject> subjectDao = daoFactory.getSubjectDaoImpl();*/
 
@@ -40,49 +38,49 @@ public class SubjectServiceImpl implements SubjectService {
 
 	@Override
 	public List<Subject> getSubjects() throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
 		subjectDao = context.getBean(SubjectDaoImpl.class);
 		List<Subject> subjects;
 		try {
 			subjects = subjectDao.getEntities();
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 		return subjects;
 	}
 
 	@Override
 	public void addSubject(Subject subject) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
 		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
 			subjectDao.addEntity(subject);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 
 	}
 
 	@Override
 	public void deleteSubject(int id) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
 		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
 			subjectDao.deleteEntity(id);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 
 	}
 
 	@Override
 	public void updateSubject(Subject subject) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(SubjectServiceImpl.class);
 		subjectDao = context.getBean(SubjectDaoImpl.class);
 		try {
 			subjectDao.updateEntity(subject);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 
 	}

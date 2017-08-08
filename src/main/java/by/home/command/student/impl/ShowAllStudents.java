@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import by.home.command.exception.CommandException;
 import by.home.command.impl.BaseCommand;
+import by.home.command.impl.ConfigurationBean;
 import by.home.entity.Student;
 import by.home.service.StudentService;
 import by.home.service.exception.ServiceException;
@@ -41,8 +42,12 @@ public class ShowAllStudents extends BaseCommand {
 		List<Student> students;
 		
 	
-		ApplicationContext context =  new AnnotationConfigApplicationContext(ShowAllStudents.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(ConfigurationBean.class);
+		
 		ShowAllStudents showAllStudents = (ShowAllStudents) context.getBean("showAllStudents");
+		
+		
+		
 		
 		/*ServiceFactory serviceFactory = ServiceFactory.getInstance();
 		StudentService studentService = serviceFactory.getStudentService();*/
@@ -51,7 +56,7 @@ public class ShowAllStudents extends BaseCommand {
 			students = showAllStudents.studentService.getStudents();
 			//students = studentService.getStudents();
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			throw new CommandException("Could not show all students");
 		}
 
 		request.setAttribute("students", students);
@@ -60,7 +65,7 @@ public class ShowAllStudents extends BaseCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 
 	}

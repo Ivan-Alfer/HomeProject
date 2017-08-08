@@ -66,13 +66,13 @@ public class AddNewSubject extends BaseCommand {
 			addNewSubject.subjectService.addSubject(addNewSubject.subject);
 			//subjectService.addSubject(subject);
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			throw new CommandException("Could not add new subject");
 		}
 
 		try {
 			response.sendRedirect("/HomeProject/all_subjects");
 		} catch (IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 	}
 }

@@ -78,13 +78,13 @@ public class UpdateStudent extends BaseCommand {
 			upd.studentService.updateStudent(upd.student);
 			//studentService.updateStudent(student);
 		} catch (ServiceException e) {
-			throw new CommandException();
+			throw new CommandException("Could not update student");
 		}
 
 		try {
 			response.sendRedirect("/HomeProject/all_students");
 		} catch (IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 
 	}

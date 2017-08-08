@@ -53,13 +53,13 @@ public class DeleteStudent extends BaseCommand {
 			deleteStudent.studentService.deleteStudent(id);
 			//studentService.deleteStudent(id);
 		} catch (ServiceException e) {
-			throw new CommandException();
+			throw new CommandException("Could not delete student");
 		}
 
 		try {
 			response.sendRedirect("/HomeProject/all_students");
 		} catch (IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 	}
 }

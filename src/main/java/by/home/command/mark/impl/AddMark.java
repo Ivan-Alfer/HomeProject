@@ -78,13 +78,13 @@ public class AddMark extends BaseCommand {
 				addMark.markService.addMark(addMark.mark);
 				//markService.addMark(mark);
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			throw new CommandException("Could not add mark");
 		}
 
 		try {
 			response.sendRedirect("/HomeProject/all_student_on_the_subject?id=" + subId);
 		} catch (IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 	}
 }

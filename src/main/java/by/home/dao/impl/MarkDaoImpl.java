@@ -12,10 +12,6 @@ import by.home.entity.Mark;
 @Component
 public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 
-	public MarkDaoImpl() {
-		super();
-	}
-
 	@Override
 	protected String getAllSelectQuery() {
 		return "from Mark";
@@ -34,7 +30,7 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 			session.beginTransaction();
 			marks = session.createQuery("from Mark", Mark.class).list();
 		} catch (Exception e) {
-			throw new DaoException();
+			throw new DaoException("Database server not responding");
 		}finally{
 			session.getTransaction().commit();
 		}
@@ -50,7 +46,7 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 			marks = session.createQuery("from Mark where studentId = :id", Mark.class).setParameter("id", studentId)
 					.list();
 		} catch (Exception e) {
-			throw new DaoException();
+			throw new DaoException("Database server not responding");
 		}finally{
 			session.getTransaction().commit();
 		}
@@ -65,7 +61,7 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 		session.beginTransaction();
 		marks = session.createQuery("from Mark where subjectId = :id", Mark.class).setParameter("id", subjectId).list();
 		} catch (Exception e) {
-			throw new DaoException();
+			throw new DaoException("Database server not responding");
 		}finally{
 			session.getTransaction().commit();
 		}

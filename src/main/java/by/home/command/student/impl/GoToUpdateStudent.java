@@ -18,7 +18,7 @@ public class GoToUpdateStudent extends BaseCommand {
 	private static final String LAST_NAME = "lastName";
 
 	@Override
-	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
+	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException  {
 		Student student = new Student();
 		String sId = request.getParameter(ID);
 		student.setId(Integer.valueOf(sId));
@@ -30,7 +30,7 @@ public class GoToUpdateStudent extends BaseCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException("Could not go to the page");
 		}
 
 	}

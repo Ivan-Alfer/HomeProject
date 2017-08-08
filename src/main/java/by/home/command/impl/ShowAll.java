@@ -61,7 +61,7 @@ public class ShowAll extends BaseCommand {
 			marks = showAll.markService.getAllEntities();
 			//marks = markDao.getAllEntities();
 		} catch (ServiceException e1) {
-			throw new CommandException();
+			throw new CommandException("Could not show all notes");
 		}
 
 		request.setAttribute("marks", marks);
@@ -69,7 +69,7 @@ public class ShowAll extends BaseCommand {
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
-			throw new CommandException();
+			throw new CommandException(e);
 		}
 	}
 }

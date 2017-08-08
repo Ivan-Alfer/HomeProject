@@ -23,13 +23,7 @@ import by.home.service.exception.ServiceException;
 @ComponentScan("by.home")
 public class StudentServiceImpl implements StudentService {
 	
-	public StudentServiceImpl() {
-	}
-	
-	
 	private BaseDao<Student> studentDao;
-	
-	private ApplicationContext context;
 	
 	public BaseDao<Student> getStudentDao() {
 		return studentDao;
@@ -45,47 +39,47 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public List<Student> getStudents() throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
 		studentDao = context.getBean(StudentDaoImpl.class);
 		List<Student> students;
 		try {
 			students = studentDao.getEntities();
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 		return students;
 	}
 
 	@Override
 	public void addStudent(Student student) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
 		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
 			studentDao.addEntity(student);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 	}
 
 	@Override
 	public void deleteStudent(int id) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
 		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
 			studentDao.deleteEntity(id);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 	}
 
 	@Override
 	public void updateStudent(Student student) throws ServiceException {
-		context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
+		ApplicationContext context =  new AnnotationConfigApplicationContext(StudentServiceImpl.class);
 		studentDao = context.getBean(StudentDaoImpl.class);
 		try {
 			studentDao.updateEntity(student);
 		} catch (DaoException e) {
-			throw new ServiceException();
+			throw new ServiceException("Something happend in DAO");
 		}
 
 	}
