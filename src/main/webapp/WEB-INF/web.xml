@@ -5,6 +5,10 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>Home Project</display-name>
 
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 	<servlet>
 		<servlet-name>go_to_main_page</servlet-name>
 		<servlet-class>by.home.controller.Controller</servlet-class>

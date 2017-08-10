@@ -6,20 +6,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import by.home.command.exception.CommandException;
 import by.home.command.impl.BaseCommand;
-import by.home.command.mark.impl.AddMark;
 import by.home.entity.Subject;
 import by.home.service.SubjectService;
 import by.home.service.exception.ServiceException;
-import by.home.service.impl.SubjectServiceImpl;
 
 @Component
 @ComponentScan("by.home")

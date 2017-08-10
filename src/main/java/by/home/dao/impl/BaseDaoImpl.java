@@ -32,6 +32,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 			session.beginTransaction();
 			items = session.createQuery(getAllSelectQuery()).list();
 		} catch (Exception e) {
+			session.getTransaction().rollback();
 			throw new DaoException("Database server not responding. Entities not received");
 		}finally{
 			session.getTransaction().commit();

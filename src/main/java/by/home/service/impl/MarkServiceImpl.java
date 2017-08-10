@@ -3,18 +3,11 @@ package by.home.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import by.home.command.mark.impl.AddMark;
 import by.home.dao.MarkDao;
 import by.home.dao.exception.DaoException;
-import by.home.dao.impl.MarkDaoImpl;
 import by.home.entity.Mark;
 import by.home.service.MarkService;
 import by.home.service.exception.ServiceException;

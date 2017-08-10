@@ -2,8 +2,6 @@ package by.home.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import by.home.entity.Subject;
 import by.home.service.exception.ServiceException;
 

@@ -2,13 +2,10 @@ package by.home.command.subject.impl;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
@@ -68,7 +65,6 @@ public class UpdateSubject extends BaseCommand {
 			subjectService.updateSubject(subject);
 			// subjectService.updateSubject(subject);
 		} catch (ServiceException e1) {
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/HomeProject/error");
 			throw new CommandException("Could not delete subject");
 		}
 

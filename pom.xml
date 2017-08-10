@@ -78,8 +78,18 @@
 			<artifactId>spring-core</artifactId>
 			<version>4.3.7.RELEASE</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.3.7.RELEASE</version>
+		</dependency>
+
+
 	</dependencies>
-	
+
+
+
+
 	<issueManagement>
 		<url>https://github.com/Ivan-Alfer/HomeProject</url>
 		<system>Github</system>

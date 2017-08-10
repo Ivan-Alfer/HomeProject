@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 import by.home.command.exception.CommandException;
 import by.home.command.impl.BaseCommand;
 import by.home.entity.Student;
-import by.home.service.MarkService;
-import by.home.service.ServiceFactory;
 import by.home.service.StudentService;
 import by.home.service.exception.ServiceException;
 
