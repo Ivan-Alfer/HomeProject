@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import by.home.command.exception.CommandException;
@@ -16,7 +15,6 @@ import by.home.service.MarkService;
 import by.home.service.exception.ServiceException;
 
 @Component
-@ComponentScan("by.home")
 public class AddMark extends BaseCommand {
 
 	private static final String STUDENT_ID = "studentId";
@@ -28,22 +26,6 @@ public class AddMark extends BaseCommand {
 	
 	@Autowired
 	private Mark mark;
-
-	public Mark getMark() {
-		return mark;
-	}
-
-	public void setMark(Mark mark) {
-		this.mark = mark;
-	}
-
-	public MarkService getMarkService() {
-		return markService;
-	}
-
-	public void setMarkService(MarkService markService) {
-		this.markService = markService;
-	}
 
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {

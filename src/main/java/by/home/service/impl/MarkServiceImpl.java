@@ -3,7 +3,6 @@ package by.home.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import by.home.dao.MarkDao;
@@ -13,7 +12,6 @@ import by.home.service.MarkService;
 import by.home.service.exception.ServiceException;
 
 @Service
-@ComponentScan("by.home")
 public class MarkServiceImpl implements MarkService {
 	
 	@Autowired

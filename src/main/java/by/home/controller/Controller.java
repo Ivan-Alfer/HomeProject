@@ -2,37 +2,46 @@ package by.home.controller;
 
 import java.io.UnsupportedEncodingException;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import by.home.command.impl.BaseCommand;
-import by.home.command.impl.ConfigurationBean;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import by.home.command.Command;
+import by.home.command.config.CommandsFactory;
 
 public class Controller extends HttpServlet {
 
 	@Autowired
-	private BaseCommand baseCommand;
+	private CommandsFactory commandsFactory;
 	
-	public BaseCommand getBaseCommand() {
-		return baseCommand;
-	}
-
-	public void setBaseCommand(BaseCommand baseCommand) {
-		this.baseCommand = baseCommand;
-	}
+/*	@Autowired
+	@Qualifier("GO_TO_MAIN_PAGE")
+	private BaseCommand baseCommand;*/
 
 	private static final long serialVersionUID = 1L;
-	//private final CommandHelper commandHelper = new CommandHelper();
+	// private final CommandHelper commandHelper = new CommandHelper();
 	private static final String COMMAND = "command";
 
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+		//ApplicationContextUtils.getWebApplicationContext( config.getServletContext())
+		
+	}
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		
+
 		doPost(request, response);
 	}
 
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
@@ -45,26 +54,27 @@ public class Controller extends HttpServlet {
 			nameCommand = getInitParameter(COMMAND);
 		}
 		
-		baseCommand.execute(request, response);
+		Command command = commandsFactory.getCommand(nameCommand);
+		command.execute(request, response);
 		
-		AnnotationConfigApplicationContext context = null;
-		try {
-			context = new AnnotationConfigApplicationContext(ConfigurationBean.class);
+		/*AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.register(ConfigurationBean.class);
+		baseCommand.execute(request, response);*/
 
-			BaseCommand command = (BaseCommand) context.getBean(nameCommand);
-			command.execute(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			if (context != null) {
-				context.close();
-			}
-		}
 		
-		
+		 /* AnnotationConfigApplicationContext context = null; try { context =
+		  new AnnotationConfigApplicationContext(ConfigurationBean.class);
+		  
+		  BaseCommand command = (BaseCommand) context.getBean(nameCommand);
+		  command.execute(request, response); } catch (Exception e) {
+		  e.printStackTrace(); } finally { if (context != null) {
+		  context.close(); } }*/
+		 
+
 		/*
 		 * Command command = commandHelper.getCommand(nameCommand);
 		 * command.execute(request, response);
 		 */
 	}
+
 }

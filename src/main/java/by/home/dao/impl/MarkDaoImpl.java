@@ -27,12 +27,9 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 		List<Mark> marks = new ArrayList<Mark>();
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
 			marks = session.createQuery("from Mark", Mark.class).list();
 		} catch (Exception e) {
 			throw new DaoException("Database server not responding");
-		}finally{
-			session.getTransaction().commit();
 		}
 		return marks;
 	}
@@ -42,13 +39,10 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 		List<Mark> marks = new ArrayList<Mark>();
 		try {
 			session = HibernateUtil.getSessionFactory().openSession();
-			session.beginTransaction();
 			marks = session.createQuery("from Mark where studentId = :id", Mark.class).setParameter("id", studentId)
 					.list();
 		} catch (Exception e) {
 			throw new DaoException("Database server not responding");
-		}finally{
-			session.getTransaction().commit();
 		}
 		return marks;
 	}
@@ -58,12 +52,9 @@ public class MarkDaoImpl extends BaseDaoImpl<Mark> implements MarkDao {
 		List<Mark> marks = new ArrayList<Mark>();
 		try {
 		session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
 		marks = session.createQuery("from Mark where subjectId = :id", Mark.class).setParameter("id", subjectId).list();
 		} catch (Exception e) {
 			throw new DaoException("Database server not responding");
-		}finally{
-			session.getTransaction().commit();
 		}
 		return marks;
 	}

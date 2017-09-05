@@ -174,9 +174,4 @@
 		<url-pattern>/add_mark</url-pattern>
 	</servlet-mapping>
 
-	<!-- <servlet> <servlet-name>add_mark</servlet-name> <servlet-class>by.home.les11.controller.Controller</servlet-class> 
-		<init-param> <param-name>command</param-name> <param-value>ADD_MARK</param-value> 
-		</init-param> </servlet> <servlet-mapping> <servlet-name>add_mark</servlet-name> 
-		<url-pattern>/add_mark</url-pattern> </servlet-mapping> -->
-
 </web-app>

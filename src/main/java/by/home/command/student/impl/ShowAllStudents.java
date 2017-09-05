@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import by.home.command.exception.CommandException;
@@ -19,20 +18,11 @@ import by.home.service.StudentService;
 import by.home.service.exception.ServiceException;
 
 @Component
-@ComponentScan("by.home")
 public class ShowAllStudents extends BaseCommand {
 	
 	@Autowired
 	private StudentService studentService;
 	
-	public StudentService getStudentService() {
-		return studentService;
-	}
-
-	public void setStudentService(StudentService studentService) {
-		this.studentService = studentService;
-	}
-
 	@Override
 	protected void executeRaw(HttpServletRequest request, HttpServletResponse response) throws CommandException {
 

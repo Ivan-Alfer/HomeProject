@@ -29,13 +29,10 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	public List<T> getEntities() throws DaoException {
 		List<T> items = new ArrayList<T>();
 		try {
-			session.beginTransaction();
 			items = session.createQuery(getAllSelectQuery()).list();
 		} catch (Exception e) {
 			session.getTransaction().rollback();
 			throw new DaoException("Database server not responding. Entities not received");
-		}finally{
-			session.getTransaction().commit();
 		}
 		return items;
 	}

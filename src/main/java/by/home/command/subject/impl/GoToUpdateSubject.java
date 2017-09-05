@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import by.home.command.exception.CommandException;
@@ -15,7 +14,6 @@ import by.home.command.impl.BaseCommand;
 import by.home.entity.Subject;
 
 @Component
-@ComponentScan("by.home")
 public class GoToUpdateSubject extends BaseCommand{
 
 	private static final String ID = "id";
