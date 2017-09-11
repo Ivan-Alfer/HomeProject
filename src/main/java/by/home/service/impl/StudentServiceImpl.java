@@ -3,7 +3,8 @@ package by.home.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 
 import by.home.dao.BaseDao;
 import by.home.dao.exception.DaoException;
@@ -11,7 +12,8 @@ import by.home.entity.Student;
 import by.home.service.StudentService;
 import by.home.service.exception.ServiceException;
 
-@Service
+@Component
+@ComponentScan("by.home")
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
