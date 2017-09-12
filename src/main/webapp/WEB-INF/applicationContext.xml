@@ -1,13 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
-    xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
     http://www.springframework.org/schema/context
-    http://www.springframework.org/schema/context/spring-context-4.1.xsd">
- 
-  	<context:annotation-config  />
-    <context:component-scan base-package="by.home"/>
+	http://www.springframework.org/schema/context/spring-context-4.1.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-4.1.xsd">
+
+
+	<context:annotation-config />
+	<context:component-scan base-package="by.home" />
+
+	<bean id="commandsFactory" class="by.home.command.config.CommandsFactory">
+		<property name="commands" ref="commands" />
+	</bean>
+	
+<!-- 	<bean id="goToMainPage" class="by.home.command.impl.GoToMainPage" />
+
+ -->
+
+	<util:map id="commands">
+		<entry key="GO_TO_MAIN_PAGE" >
+			<!-- <value type="by.home.command.impl.GoToMainPage">goToMainPage</value> -->
+			<bean class="by.home.command.impl.GoToMainPage" />
+		</entry>
+		<entry key="SHOW_ALL">
+			<bean class="by.home.command.impl.ShowAll" />
+		</entry>
+		<entry key="GO_TO_ADD_MARK">
+			<bean class="by.home.command.mark.impl.GoToAddMark" />
+		</entry>
+		<entry key="ADD_MARK">
+			<bean class="by.home.command.mark.impl.AddMark" />
+		</entry>
+		<entry key="SHOW_ALL_STUDENTS">
+			<bean class="by.home.command.student.impl.ShowAllStudents" />
+		</entry>
+		<entry key="SHOW_ALL_ABOUT_STUDENT">
+			<bean class="by.home.command.student.impl.ShowAllAboutStudent" />
+		</entry>
+		<entry key="ADD_NEW_STUDENT">
+			<bean class="by.home.command.student.impl.AddNewStudent" />
+		</entry>
+		<entry key="GO_TO_UPDATE_STUDENT">
+			<bean class="by.home.command.student.impl.GoToUpdateStudent" />
+		</entry>
+		<entry key="UPDATE_STUDENT">
+			<bean class="by.home.command.student.impl.UpdateStudent" />
+		</entry>
+		<entry key="DELETE_STUDENT">
+			<bean class="by.home.command.student.impl.DeleteStudent" />
+		</entry>
+		<entry key="SHOW_ALL_SUBJECTS">
+			<bean class="by.home.command.subject.impl.ShowAllSubjects" />
+		</entry>
+		<entry key="ADD_NEW_SUBJECT">
+			<bean class="by.home.command.subject.impl.AddNewSubject" />
+		</entry>
+		<entry key="GO_TO_UPDATE_SUBJECT">
+			<bean class="by.home.command.subject.impl.GoToUpdateSubject" />
+		</entry>
+		<entry key="UPDATE_SUBJECT">
+			<bean class="by.home.command.subject.impl.UpdateSubject" />
+		</entry>
+		<entry key="DELETE_SUBJECT">
+			<bean class="by.home.command.subject.impl.DeleteSubject" />
+		</entry>
+		<entry key="ALL_STUDENT_ON_THE_SUBJECT">
+			<bean class="by.home.command.subject.impl.AllStudentOnTheSubject" />
+		</entry>
+	</util:map>
+
 
 </beans>

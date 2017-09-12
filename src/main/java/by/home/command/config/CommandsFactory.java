@@ -2,6 +2,7 @@ package by.home.command.config;
 
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,9 +13,17 @@ import by.home.controller.CommandNames;
 
 public class CommandsFactory {
 	
-	@Autowired
+	//@Autowired
 	private Map<CommandNames, Command> commands;
 	
+	public Map<CommandNames, Command> getCommands() {
+		return commands;
+	}
+
+	public void setCommands(Map<CommandNames, Command> commands) {
+		this.commands = commands;
+	}
+
 	public Command getCommand(String name){
 		
 		CommandNames commandName = CommandNames.valueOf(name.toUpperCase());

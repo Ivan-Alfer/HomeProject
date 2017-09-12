@@ -27,12 +27,12 @@ import by.home.command.subject.impl.ShowAllSubjects;
 import by.home.command.subject.impl.UpdateSubject;
 import by.home.controller.CommandNames;
 
-@Configuration
+//@Configuration
 @ComponentScan("by.home")
 public class ConfigurationBean {
 
 	
-	@Autowired
+/*	@Autowired
 	private GoToMainPage goToMainPage;
 	
 	@Autowired
@@ -100,6 +100,6 @@ public class ConfigurationBean {
 		commands.put(CommandNames.DELETE_SUBJECT, deleteSubject);
 		commands.put(CommandNames.ALL_STUDENT_ON_THE_SUBJECT, allStudentOnTheSubject);
 		return commands;
-	}
+	}*/
 	
 }
