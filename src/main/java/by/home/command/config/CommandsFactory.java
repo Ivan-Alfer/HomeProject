@@ -2,15 +2,14 @@ package by.home.command.config;
 
 import java.util.Map;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 import by.home.command.Command;
 import by.home.controller.CommandNames;
 
 @Component
-
+@ComponentScan("by.home")
 public class CommandsFactory {
 	
 	//@Autowired

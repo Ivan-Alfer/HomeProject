@@ -15,23 +15,30 @@ import javax.persistence.Table;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
+
 @Component
 @Scope("prototype")
 @Entity
 @Table(name = "student")
 public class Student {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID")
 	private Integer id;
 
+	
 	@Column(name = "FIRST_NAME")
 	private String firstName;
 
 	@Column(name = "LAST_NAME")
 	private String lastName;
 
+	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "student")
 	private List<Mark> marks;
 
@@ -39,6 +46,7 @@ public class Student {
 		return marks;
 	}
 
+	
 	public void setMarks(List<Mark> marks) {
 		this.marks = marks;
 	}

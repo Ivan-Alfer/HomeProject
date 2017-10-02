@@ -1,4 +1,4 @@
-package by.home.homeproject.dbdaotest;
+package by.home.dbdaotest;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -13,12 +13,12 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.Assert;
 import org.testng.annotations.Test;
 
+import by.home.dao.impl.HibernateUtil;
 import by.home.dao.impl.StudentDaoImpl;
 import by.home.entity.Student;
-import by.home.homeproject.hibernateutil.HibernateUtil;
 
 @Test(groups = "checkStudentFunction")
-public class DBStudentDaoTestNg extends DBBaseDaoTestNg {
+public class DBStudentDaoTestNg extends DBBaseDaoTest {
 
 	@Override
 	protected String getPath() {

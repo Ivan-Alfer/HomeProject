@@ -1,4 +1,4 @@
-package by.home.homeproject.dbdaotest;
+package by.home.dbdaotest;
 
 import static org.junit.Assert.*;
 
@@ -14,16 +14,16 @@ import org.dbunit.operation.DatabaseOperation;
 import org.junit.Assert;
 import org.junit.Test;
 
+import by.home.dao.impl.HibernateUtil;
 import by.home.dao.impl.SubjectDaoImpl;
 import by.home.entity.Subject;
-import by.home.homeproject.hibernateutil.HibernateUtil;
 
 public class DBSubjectDaoTest extends DBBaseDaoTest {
 
 	@Test
 	public void testGetAll() throws Exception {
 
-		session = HibernateUtil.getSessionFactory().openSession();
+		session = by.home.dao.impl.HibernateUtil.getSessionFactory().openSession();
 		SubjectDaoImpl subjectDao = new SubjectDaoImpl(session);
 		List<Subject> subjects = subjectDao.getEntities();
 

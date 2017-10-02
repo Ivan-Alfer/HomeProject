@@ -1,4 +1,4 @@
-package by.home.homeproject.dbdaotest;
+package by.home.dbdaotest;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,33 +7,30 @@ import java.util.Properties;
 
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
-import org.dbunit.database.DatabaseConfig;
 import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.ext.mysql.MySqlDataTypeFactory;
-import org.dbunit.ext.mysql.MySqlMetadataHandler;
 import org.dbunit.operation.DatabaseOperation;
 import org.hibernate.Session;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.BeforeClass;
 
-public abstract class DBBaseDaoTestNg {
+public abstract class DBBaseDaoTest {
 	
 	protected IDataSet beforeData;
-
+	
 	private static Properties prop;
-
+	
 	protected static IDatabaseTester tester;
-
-	protected IDatabaseConnection dbConn;
 	
 	protected Session session;
+	
+	protected IDatabaseConnection dbConn;
 
 	protected abstract String getPath();
-
-	@BeforeSuite
+	
+	@BeforeClass
 	public static void takeConnection() throws Exception {
 		prop = new Properties();
 		try {
@@ -45,27 +42,19 @@ public abstract class DBBaseDaoTestNg {
 
 		tester = new JdbcDatabaseTester(prop.getProperty("db.driver"), prop.getProperty("db.url"),
 				prop.getProperty("db.username"), prop.getProperty("db.password"));
-
 	}
-
-	protected static IDatabaseConnection getDbConnection() throws Exception{
-		IDatabaseConnection dbConn = tester.getConnection();
-		DatabaseConfig config = dbConn.getConfig();
-		config.setProperty(DatabaseConfig.PROPERTY_DATATYPE_FACTORY, new MySqlDataTypeFactory());
-		config.setProperty(DatabaseConfig.PROPERTY_METADATA_HANDLER, new MySqlMetadataHandler());
-		return dbConn;
-	} 
 	
-	@BeforeMethod
-	public void setUp() throws Exception {
-		dbConn = getDbConnection(); 
+	@Before
+	public void setUp() throws Exception {		
+		dbConn = tester.getConnection(); 
 		beforeData = new FlatXmlDataSetBuilder().build(new File(getPath()));
 		tester.setDataSet(beforeData);
+
 		DatabaseOperation.CLEAN_INSERT.execute(dbConn, beforeData);
 	}
-
-	@AfterMethod
-	public void closeConnection() throws SQLException {
+	
+	@After
+	public void closeConnection() throws SQLException{
 		dbConn.close();
 	}
 }
