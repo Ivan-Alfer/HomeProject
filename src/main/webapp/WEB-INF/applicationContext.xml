@@ -22,10 +22,7 @@
  -->
 
 	<util:map id="commands">
-		<entry key="GO_TO_MAIN_PAGE" >
-			<!-- <value type="by.home.command.impl.GoToMainPage">goToMainPage</value> -->
-			<bean class="by.home.command.impl.GoToMainPage" />
-		</entry>
+
 		<entry key="SHOW_ALL">
 			<bean class="by.home.command.impl.ShowAll" />
 		</entry>

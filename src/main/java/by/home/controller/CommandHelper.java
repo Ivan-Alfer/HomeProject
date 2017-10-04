@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import by.home.command.Command;
-import by.home.command.impl.GoToMainPage;
 import by.home.command.impl.ShowAll;
 import by.home.command.mark.impl.AddMark;
 import by.home.command.mark.impl.GoToAddMark;
@@ -28,7 +27,7 @@ public class CommandHelper {
 	private Map<CommandNames, Command> commands = new HashMap<>();
 
 	public CommandHelper() {
-		commands.put(CommandNames.GO_TO_MAIN_PAGE, new GoToMainPage());
+		//commands.put(CommandNames.GO_TO_MAIN_PAGE, new GoToMainPage());
 		commands.put(CommandNames.SHOW_ALL_STUDENTS, new ShowAllStudents());
 		commands.put(CommandNames.SHOW_ALL_SUBJECTS, new ShowAllSubjects());
 		commands.put(CommandNames.SHOW_ALL, new ShowAll());

@@ -9,7 +9,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import by.home.command.Command;
-import by.home.command.impl.GoToMainPage;
 import by.home.command.impl.ShowAll;
 import by.home.command.mark.impl.AddMark;
 import by.home.command.mark.impl.GoToAddMark;
