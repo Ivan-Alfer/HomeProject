@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import by.home.command.exception.CommandException;
 import by.home.command.impl.BaseCommand;
 import by.home.entity.Subject;
@@ -37,13 +40,30 @@ public class ShowAllSubjects extends BaseCommand {
 			throw new CommandException("Could not show all subjects");
 		}
 
-		request.setAttribute("subjects", subjects);
+		String json;
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			json = mapper.writer().writeValueAsString(subjects);
+			response.setContentType("subjects/json");
+		} catch (JsonProcessingException e) {
+			throw new CommandException("Could not show all subjects");
+		}
+	
+
+		response.setCharacterEncoding("UTF-8");
+		try {
+			response.getWriter().write(json);
+		} catch (IOException e1) {
+			throw new CommandException("Could not show all subjects");
+		}
+		
+		/*request.setAttribute("subjects", subjects);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/all_subjects.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
 			throw new CommandException(e);
-		}
+		}*/
 
 	}
 

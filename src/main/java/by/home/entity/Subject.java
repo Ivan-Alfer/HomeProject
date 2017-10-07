@@ -15,6 +15,8 @@ import javax.persistence.Table;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Component
 @Scope("prototype")
@@ -31,6 +33,7 @@ public class Subject {
 	private String subjectName;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="subject")
+	@JsonIgnore
 	private List<Mark> marks;
 	
 	public List<Mark> getMarks() {

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import by.home.command.exception.CommandException;
 import by.home.entity.Mark;
 import by.home.service.MarkService;
@@ -39,12 +41,28 @@ public class ShowAll extends BaseCommand {
 			throw new CommandException("Could not show all notes");
 		}
 
-		request.setAttribute("marks", marks);
+		
+		String json;
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			json = mapper.writer().writeValueAsString(marks);
+			response.setContentType("all/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new CommandException("Could not show all students" + e.getMessage());
+		}
+
+
+		
+/*		request.setAttribute("marks", marks);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/all.jsp");
 		try {
 			dispatcher.forward(request, response);
 		} catch (ServletException | IOException e) {
 			throw new CommandException(e);
-		}
+		}*/
 	}
 }

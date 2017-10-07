@@ -117,8 +117,6 @@
 		<url-pattern>/subject/new_subject</url-pattern>
 	</servlet-mapping>
 
-
-
 	<servlet>
 		<servlet-name>go_to_update_subject</servlet-name>
 		<servlet-class>by.home.controller.Controller</servlet-class>
@@ -131,8 +129,6 @@
 		<servlet-name>go_to_update_subject</servlet-name>
 		<url-pattern>/subject/update</url-pattern>
 	</servlet-mapping>
-
-
 
 	<servlet>
 		<servlet-name>delete_subject</servlet-name>
